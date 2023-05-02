@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3298798766" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="2859061239" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>mini_gland_sim</param.appname>
     <param.icon>${PROJECT_ROOT}/mini_gland_sim_resources/icon.icns</param.icon>
     <param.icons>
@@ -90,7 +90,10 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
     <fileset.main>
       <file>${PROJECT_ROOT}/mini_gland_sim.mlapp</file>
     </fileset.main>
-    <fileset.resources />
+    <fileset.resources>
+      <file>${PROJECT_ROOT}/acini/cell_meshes/real_cell_1_mesh.mat</file>
+      <file>${PROJECT_ROOT}/acini/par.mat</file>
+    </fileset.resources>
     <fileset.package />
     <fileset.depfun />
     <build-deliverables>
