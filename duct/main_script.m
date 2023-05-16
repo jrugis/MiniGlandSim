@@ -32,6 +32,7 @@ Conc.LIC = cell2struct(num2cell(LIC),fields);
 
 %% Read mesh file and process raw mesh data
 [cell_prop, lumen_prop] = process_mesh_info(L_int);
+
 %% Use full 3D model resolution
 
 s_cell_prop = cell_prop;
@@ -144,7 +145,7 @@ end
 CellPos = max_length - CellPos;
 
 %% Plotting the full model
-if display_plots
+if display_plots & ~simplify_model
     figure
     subplot(3,2,1)
     plot(CellPos, y_c(1,I),'.')
@@ -200,7 +201,7 @@ end
 
 %% Plotting the simplified cell model
 
-if display_plots
+if display_plots & simplify_model
     figure
     CellPos = [2,1];
     IntPos = [2,1];
