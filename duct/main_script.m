@@ -30,6 +30,7 @@ Conc.PS = cell2struct(num2cell(PS),fields);
 Conc.CIC = cell2struct(num2cell(CIC),fields);
 Conc.LIC = cell2struct(num2cell(LIC),fields);
 
+
 %% Read mesh file and process raw mesh data
 [cell_prop, lumen_prop] = process_mesh_info(L_int);
 

@@ -1,0 +1,11 @@
+Changes to code 
+Striated_Duct_Method_of_Lines => MiniGland/duct:
+
+- move ini2struct.m up one directory
+- get_parameters.m
+    comment out line 46 addpath 
+- main_script.m
+    if simplify_model
+    if display_plots & ~simplify_model
+    if display_plots & simplify_model
+  

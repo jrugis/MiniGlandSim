@@ -43,7 +43,7 @@ function [P_i, P_s] = get_parameters(Conc, PSflow, parms_file)
 %   - V_w
 %
 
-addpath('ini2struct')
+%addpath('ini2struct')
 INI = ini2struct(parms_file);
 param_s = INI.striated;
 param_i = INI.intercalated;
