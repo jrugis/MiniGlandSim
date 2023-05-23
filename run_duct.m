@@ -4,4 +4,3 @@ main_script; % This a script, NOT a function. All variables will remain in scope
 save('my_duct_test');
 cd('..');
 end
-
