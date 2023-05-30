@@ -32,7 +32,12 @@ Conc.LIC = cell2struct(num2cell(LIC),fields);
 
 
 %% Read mesh file and process raw mesh data
-[cell_prop, lumen_prop] = process_mesh_info(L_int);
+if isfile("cell_lumen_prop.mat")
+    load("cell_lumen_prop");
+else
+    [cell_prop, lumen_prop] = process_mesh_info(L_int);
+    save("cell_lumen_prop", "cell_prop", "lumen_prop");
+end
 
 %% Use full 3D model resolution
 

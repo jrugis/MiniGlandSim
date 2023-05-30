@@ -1,4 +1,5 @@
 .DS_Store
 mini_gland_sim/
 duct/my_duct_test.mat
+duct/cell_lumen_prop.mat
 duct/MiniGlandMesh*
