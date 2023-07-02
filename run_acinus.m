@@ -1,6 +1,6 @@
-function [] = run_acinii()
+function [] = run_acinus()
 test = 1;
-cd 'acini';
+cd 'acinus';
 save('mytest');
 cd '..'
 end

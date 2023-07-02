@@ -10,7 +10,8 @@
 % time_series.K = P.ConP.K*ones(1,5001);
 
 % load("Acinus PDE Results\result_bicarb_smooth_VPLC0.002.mat")
-load("../acinus/result_bicarb_VPLC0.004.mat")
+%load("../acinus/result_bicarb_VPLC0.004.mat")
+load("../acinus/" + acinus_data_file);
 time_series.Q = time_series.Q*7;    
 % plot(time_series.time,time_series.Q)
 
@@ -206,7 +207,7 @@ for i = 1:length(x)
 cell_no = x(i);
 cell_no = cell_no - 1;
 n_c = length(cell_prop);
-cell_prop{x(i)}.type
+%cell_prop{x(i)}.type
 yy_c = z(:,[cell_no*9+1 : cell_no*9+9]);
 cpos(i) = max_length - cell_prop{x(i)}.mean_dist;
 wC(i,:) = yy_c(t_sample,3);

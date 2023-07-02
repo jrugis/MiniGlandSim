@@ -13,11 +13,6 @@
 
 % clear
 
-
-parms_file = "parms_in-vivo.ini";
-simplify_model = false;
-display_plots = true;
-
 %% Model input setup
 
 L_int = 1; % um length of lumen discretisation interval

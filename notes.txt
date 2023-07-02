@@ -9,7 +9,9 @@ Striated_Duct_Method_of_Lines => MiniGland/duct:
     if simplify_model
     if display_plots & ~simplify_model
     if display_plots & simplify_model
-  
+- dynamic_script.m
+    load("../acinus/" + acinus_data_file);
+    %cell_prop{x(i)}.type
   
 
 Acinus data
@@ -48,4 +50,5 @@ precompute structure: 60s
 + steady state inversion (full model): 95s
 + dynamic data inversion: 631s
 
+Full with GUI: 5m 39s
 
