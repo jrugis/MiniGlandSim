@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3004595641" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="4007926823" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>mini_gland_sim</param.appname>
     <param.icon>${PROJECT_ROOT}/mini_gland_sim_resources/icon.icns</param.icon>
     <param.icons>
@@ -97,6 +97,7 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
+      <file>${PROJECT_ROOT}/duct/cell_lumen_prop.mat</file>
       <file>${PROJECT_ROOT}/duct/f_ODE_noMass.m</file>
       <file>${PROJECT_ROOT}/duct/get_parameters.m</file>
       <file>${PROJECT_ROOT}/duct/ini2struct.m</file>

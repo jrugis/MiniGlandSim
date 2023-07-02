@@ -13,6 +13,11 @@
 
 % clear
 
+
+parms_file = "parms_in-vivo.ini";
+simplify_model = false;
+display_plots = true;
+
 %% Model input setup
 
 L_int = 1; % um length of lumen discretisation interval
@@ -51,8 +56,8 @@ end
 
 %% Parameter structure setup
 
-% parms_file = "parms_ex-vivo.ini";
-% parms_file = "parms_in-vivo.ini";
+%parms_file = "parms_ex-vivo.ini";
+%parms_file = "parms_in-vivo.ini";
 [P_i, P_s] = get_parameters(Conc, PSflow, parms_file);
 s_cell_prop = scale_parameters(s_cell_prop, P_i, P_s);
 

@@ -1,4 +1,5 @@
 Changes to code 
+===============
 Striated_Duct_Method_of_Lines => MiniGland/duct:
 
 - move ini2struct.m up one directory
@@ -9,3 +10,42 @@ Striated_Duct_Method_of_Lines => MiniGland/duct:
     if display_plots & ~simplify_model
     if display_plots & simplify_model
   
+  
+
+Acinus data
+===========
+- primary saliva data = (time, Q, Na, K, Cl, HCO, H)
+**** What are Q and H?
+- initial concentrations = (0, 11.91, 136.95, 6.8, 115.3, 28.47, 7.726e-05)
+- 500s total time
+- stimulation ON at 0s, OFF at 400s
+
+
+Adjustable Parameters
+=====================
+**** What parameters? 
+From in-vivo, ex-vivo?
+
+
+Duct with primary saliva from stimulated acinus
+=============================================== 
+**** acinus data steady state is always first value, then stimulation
+**** simplified duct model with time-varying acinus data??? 
+**** dynamic_script runs after main_script because main script calcs duct steady state
+**** could duct steady state saved as precompute to enable faster duct parameter exploration 
+**** acinus data could have single time step (for duct steady calcs only) 
+
+Duct data
+=========
+- 1000s total time
+**** Why?  - runs 2x longer than acinus data
+
+
+
+Duct simulation running times
+=============================
+precompute structure: 60s
++ steady state inversion (full model): 95s
++ dynamic data inversion: 631s
+
+
