@@ -9,9 +9,8 @@
 % time_series.H = P.ConP.H*ones(1,5001);
 % time_series.K = P.ConP.K*ones(1,5001);
 
-% load("Acinus PDE Results\result_bicarb_smooth_VPLC0.002.mat")
-%load("../acinus/result_bicarb_VPLC0.004.mat")
-load("../acinus/" + acinus_data_file);
+%load("Acinus PDE Results\result_bicarb_smooth_VPLC0.002.mat")
+% NOTE: time_series has already been loaded in the main_script
 time_series.Q = time_series.Q*7;    
 % plot(time_series.time,time_series.Q)
 

@@ -20,8 +20,12 @@ PSflow = 7*11.91; % um3/s volumetric primary saliva flow rate
 
 fields = {'Na'; 'K'; 'Cl'; 'HCO'; 'H'; 'CO'};
 Int = [140.2; 5.3; 102.6; 24.7; 1000*10^(-7.35); 1.28]; % concentration of interstitium
+%%%%%%%%%%%%%%
 % PS = [143.5; 5.2; 114.5; 34.2; 1000*10^(-7.35); 1.28];  % concentration of Primary Saliva
-PS = [136.95; 6.8; 115.3; 28.47; 7.7260e-05; 1.28];  % concentration of Primary Saliva
+%PS = [136.95; 6.8; 115.3; 28.47; 7.7260e-05; 1.28];  % concentration of Primary Saliva
+load("../acinus/" + acinus_data_file); % get concentration of Primary Saliva from acinus simulation
+PS = [time_series.Na(1); time_series.K(1); time_series.Cl(1); time_series.HCO(1); time_series.H(1); 1.28];
+%%%%%%%%%%%%%%
 CIC = [17; 140; 22; 75; 1000*10^(-7.35); 1.28];  % cellular initial concentration
 LIC = [143.5; 5.2; 114.5; 34.2; 1000*10^(-7.35); 1.28]; % lumenal initial concentration
 Conc = struct;

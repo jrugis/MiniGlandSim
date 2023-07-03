@@ -6,11 +6,14 @@ Striated_Duct_Method_of_Lines => MiniGland/duct:
 - get_parameters.m
     comment out line 46 addpath 
 - main_script.m
+    load("../acinus/" + acinus_data_file); % get concentration of Primary Saliva from acinus simulation
+    PS = [time_series.Na(1); time_series.K(1); time_series.Cl(1); time_series.HCO(1); time_series.H(1); 1.28];
     if simplify_model
     if display_plots & ~simplify_model
     if display_plots & simplify_model
 - dynamic_script.m
-    load("../acinus/" + acinus_data_file);
+    %load("Acinus PDE Results\result_bicarb_smooth_VPLC0.002.mat")
+    % NOTE: time_series has already been loaded in the main_script
     %cell_prop{x(i)}.type
   
 
