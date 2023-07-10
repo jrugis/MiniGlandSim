@@ -1,4 +1,4 @@
-function [P_i, P_s] = get_parameters(Conc, PSflow, parms_file)
+function [P_i, P_s] = get_parameters(Conc, PSflow, parms_file, gui_parms)
 
 % The nested structure of P is as follows:
 %
@@ -48,6 +48,36 @@ INI = ini2struct(parms_file);
 param_s = INI.striated;
 param_i = INI.intercalated;
 param_c = INI.duct_common;
+
+% get the interactive user adjustments to parameters from GUI
+% intercalated
+param_i.g_enac = gui_parms.p_i.g_enac; 
+param_i.g_cacc = gui_parms.p_i.g_cacc;
+param_i.g_bk = gui_parms.p_i.g_bk;
+param_i.g_k_b = gui_parms.p_i.g_k_b;
+param_i.g_na_b = gui_parms.p_i.g_na_b;
+param_i.g_cl_b = gui_parms.p_i.g_cl_b;
+param_i.nka_alpha_b = gui_parms.p_i.nka_alpha_b;
+param_i.nbc_alpha_a = gui_parms.p_i.nbc_alpha_a;
+param_i.nbc_alpha_b = gui_parms.p_i.nbc_alpha_b;
+param_i.ae2_alpha_b = gui_parms.p_i.ae2_alpha_b;
+param_i.g_p_cl = gui_parms.p_i.g_p_cl;
+param_i.l_a = gui_parms.p_i.l_a;
+param_i.l_b = gui_parms.p_i.l_b;
+% striated
+param_s.g_enac = gui_parms.p_s.g_enac; 
+param_s.g_cftr = gui_parms.p_s.g_cftr;
+param_s.g_bk = gui_parms.p_s.g_bk;
+param_s.g_k_b = gui_parms.p_s.g_k_b;
+param_s.g_na_b = gui_parms.p_s.g_na_b;
+param_s.g_cl_b = gui_parms.p_s.g_cl_b;
+param_s.nka_alpha_b = gui_parms.p_s.nka_alpha_b;
+param_s.nbc_alpha_a = gui_parms.p_s.nbc_alpha_a;
+param_s.nbc_alpha_b = gui_parms.p_s.nbc_alpha_b;
+param_s.ae2_alpha_b = gui_parms.p_s.ae2_alpha_b;
+param_s.g_p_cl = gui_parms.p_s.g_p_cl;
+param_s.l_a = gui_parms.p_s.l_a;
+param_s.l_b = gui_parms.p_s.l_b;
 
 mergestructs = @(x,y) cell2struct([struct2cell(x);struct2cell(y)],[fieldnames(x);fieldnames(y)]);
 

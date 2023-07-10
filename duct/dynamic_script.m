@@ -14,8 +14,8 @@
 time_series.Q = time_series.Q*7;    
 % plot(time_series.time,time_series.Q)
 
-step = 0.1;
-tspan = [0:step:1000];%[0:step:400,401:25000];
+tstep = 0.1;
+tspan = [0:tstep:1000];%[0:tstep:400,401:25000];
 % tspan = [0,1000];
 x = y(end,:);
 
@@ -23,15 +23,19 @@ tic
 [t,z] = ode15s(@(t,z) f_ODE_noMass(t,z,P,s_cell_prop,s_lumen_prop,0,1,time_series), tspan, x);
 toc
 
+% save results for plotting and 3D display
+save("result_duct", "tstep", "cell_prop", "z", "lumen_prop");
+
 %% plot whole duct at a fixed time point
+%{
 time = 500;% second
-time_ind = time/step +1;
+time_ind = time/tstep +1;
 n_c = length(cell_prop);
 yyy_c = reshape(z(time_ind,1 : n_c*9),9,[]); %[9, n_c]
 yyy_l = reshape(z(time_ind,1+n_c*9 : end),6,[]); %[6, n_l]
 
-displ = 1;
-if displ
+%displ = 1;
+%if displ
 IntPos = zeros(1,lumen_prop.n_disc);
 IntPos(1) = lumen_prop.disc_length(1);
 for i = 2:lumen_prop.n_disc
@@ -144,10 +148,12 @@ subplot(3,2,6)
 plot(t, -log10(yy_l(:,5)*1e-3),'LineWidth',1)
 xlabel('time (s)')
 title('Luminal pH')
+%}
 
 %% showing whole duct info across all time
+%{
 % time = 500;% second
-% time_ind = time/step +1;
+% time_ind = time/tstep +1;
 % yyy_c = reshape(z(time_ind,1 : n_c*9),9,[]); %[9, n_c]
 % yyy_l = reshape(z(time_ind,1+n_c*9 : end),6,[]); %[6, n_l]
 
@@ -225,5 +231,6 @@ end
 
 lumen_data = yyy_l(:,1);
 % lumen_data = z;
+%}
 % end
 

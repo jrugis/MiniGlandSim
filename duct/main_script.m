@@ -49,15 +49,13 @@ s_cell_prop = cell_prop;
 s_lumen_prop = lumen_prop;
 
 %% Simplifying the model to one ID and one SD compartment
-if simplify_model
-    [s_cell_prop, s_lumen_prop] = simplify_mesh(cell_prop, lumen_prop);
-end
+%[s_cell_prop, s_lumen_prop] = simplify_mesh(cell_prop, lumen_prop);
 
 %% Parameter structure setup
 
 %parms_file = "parms_ex-vivo.ini";
 %parms_file = "parms_in-vivo.ini";
-[P_i, P_s] = get_parameters(Conc, PSflow, parms_file);
+[P_i, P_s] = get_parameters(Conc, PSflow, parms_file, gui_parms);
 s_cell_prop = scale_parameters(s_cell_prop, P_i, P_s);
 
 % Initial condition setup
@@ -89,47 +87,49 @@ toc
 % f_ODE_noMass(1,y(end,:),P,cell_prop,lumen_prop,1,0,0);
 
 % Sanity checks
-
+%{
 n_c = length(s_cell_prop);
 x_c = reshape(x(1 : n_c*9),9,[]); %[9, n_c]
 x_l = reshape(x(1+n_c*9 : end),6,[]); %[6, n_l]
 y_c = reshape(y(end,1 : n_c*9),9,[]); %[9, n_c]
 y_l = reshape(y(end,1+n_c*9 : end),6,[]); %[6, n_l]
+%}
 
 % Electroneutrality checks
-% 
-% disp('Electroneutrality check cell: initial (mol)')
-% disp((x_c(4,:)+x_c(5,:)-x_c(6,:)-x_c(7,:)+x_c(8,:)).*x_c(3,:)*1e-18-1.5*P.chi_C)
-% 
-% disp('Electroneutrality check cell: initial (mM)')
-% disp((x_c(4,:)+x_c(5,:)-x_c(6,:)-x_c(7,:)+x_c(8,:)-1.5*P.chi_C./x_c(3,:)*1e18))
-% 
-% disp('Electroneutrality check cell: final (mol)')
-% disp((y_c(4,:)+y_c(5,:)-y_c(6,:)-y_c(7,:)+y_c(8,:)).*y_c(3,:)*1e-18-1.5*P.chi_C)
-% 
-% disp('Electroneutrality check cell: final (mM)')
-% disp((y_c(4,:)+y_c(5,:)-y_c(6,:)-y_c(7,:)+y_c(8,:)-1.5*P.chi_C./y_c(3,:)*1e18))
+%{ 
+disp('Electroneutrality check cell: initial (mol)')
+disp((x_c(4,:)+x_c(5,:)-x_c(6,:)-x_c(7,:)+x_c(8,:)).*x_c(3,:)*1e-18-1.5*P.chi_C)
+ 
+disp('Electroneutrality check cell: initial (mM)')
+disp((x_c(4,:)+x_c(5,:)-x_c(6,:)-x_c(7,:)+x_c(8,:)-1.5*P.chi_C./x_c(3,:)*1e18))
+ 
+disp('Electroneutrality check cell: final (mol)')
+disp((y_c(4,:)+y_c(5,:)-y_c(6,:)-y_c(7,:)+y_c(8,:)).*y_c(3,:)*1e-18-1.5*P.chi_C)
+ 
+disp('Electroneutrality check cell: final (mM)')
+disp((y_c(4,:)+y_c(5,:)-y_c(6,:)-y_c(7,:)+y_c(8,:)-1.5*P.chi_C./y_c(3,:)*1e18))
 
-% disp('Electroneutrality check lumen: initial (mM)')
-% disp((x_l(2,1)+x_l(3,1)-x_l(4,1)-x_l(5,1)+x_l(6,1)).*s_lumen_prop.disc_volume*1e-18)
-% disp('Electroneutrality check lumen: final (mM)')
-% disp((y_l(2,:)+y_l(3,:)-y_l(4,:)-y_l(5,:)+y_l(6,:)).*s_lumen_prop.disc_volume*1e-18)
+disp('Electroneutrality check lumen: initial (mM)')
+disp((x_l(2,1)+x_l(3,1)-x_l(4,1)-x_l(5,1)+x_l(6,1)).*s_lumen_prop.disc_volume*1e-18)
+disp('Electroneutrality check lumen: final (mM)')
+disp((y_l(2,:)+y_l(3,:)-y_l(4,:)-y_l(5,:)+y_l(6,:)).*s_lumen_prop.disc_volume*1e-18)
 
-% disp('cellular osmolarity (initial condition)')
-% disp(sum(x_c(4:9,1)) + P.chi_C./x_c(3,1)*1e18)
+disp('cellular osmolarity (initial condition)')
+disp(sum(x_c(4:9,1)) + P.chi_C./x_c(3,1)*1e18)
 
-% disp('cellular osmolarity (steady state)')
-% disp(sum(y_c(4:9,:)) + P.chi_C./y_c(3,:)*1e18)
+disp('cellular osmolarity (steady state)')
+disp(sum(y_c(4:9,:)) + P.chi_C./y_c(3,:)*1e18)
 
-% disp('Lumenal osmolarity (initial condition)')
-% disp(sum(x_l(1:6,:)) + P.phi_A)
-% disp('Lumenal osmolarity (steady state)')
-% disp(sum(y_l(1:6,:)) + P.phi_A)
-% disp('interstitium osmolarity')
-% disp(sum(Int) + P.phi_B)
+disp('Lumenal osmolarity (initial condition)')
+disp(sum(x_l(1:6,:)) + P.phi_A)
+disp('Lumenal osmolarity (steady state)')
+disp(sum(y_l(1:6,:)) + P.phi_A)
+disp('interstitium osmolarity')
+disp(sum(Int) + P.phi_B)
+%}
 
 %% Plotting preprocessing
-
+%{
 IntPos = zeros(1,s_lumen_prop.n_disc);
 IntPos(1) = s_lumen_prop.disc_length(1);
 for i = 2:s_lumen_prop.n_disc
@@ -153,132 +153,134 @@ for i = 1:length(s_cell_prop)
 end
 [CellPos,I] = sort(CellPos); % [50, 100]
 CellPos = max_length - CellPos;
+%}
 
 %% Plotting the full model
-if display_plots & ~simplify_model
-    figure
-    subplot(3,2,1)
-    plot(CellPos, y_c(1,I),'.')
-    hold on
-    plot(CellPos, y_c(2,I),'.')
-    hold off
-    legend('V_A','V_B')
-    ylabel('mV')
-    title('Membrane Potential')
-    subplot(3,2,2)
-    w = y_c(3,I);
-    plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
-    hold on
-    plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.')
-    hold off
-    legend('ID', 'SD')
-    ylabel('\mum^3')
-    title('Cell Volumn')
-    subplot(3,2,3)
-    plot(CellPos, y_c(4,I),'.')
-    hold on
-    plot(CellPos, y_c(5,I),'.')
-    plot(CellPos, y_c(6,I),'.')
-    plot(CellPos, y_c(7,I),'.')
-    hold off
-    legend('Na_C','K_C','Cl_C','HCO_C')
-    ylabel('mM')
-    title('Cellular Concentration')
-    subplot(3,2,4)
-    w = -log10(y_c(8,I)*1e-3);
-    plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
-    hold on
-    plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.')
-    hold off
-    legend('ID', 'SD')
-    title('Cellular pH')
-    subplot(3,2,5)
-    plot(IntPos, y_l(1,:),'.')
-    hold on
-    plot(IntPos, y_l(2,:),'.')
-    plot(IntPos, y_l(3,:),'.')
-    plot(IntPos, y_l(4,:),'.')
-    hold off
-    legend('Na_A','K_A','Cl_A','HCO_A')
-    ylabel('mM')
-    xlabel('Dist along duct (\mum)')
-    title('Lumenal Concentration')
-    subplot(3,2,6)
-    plot(IntPos, -log10(y_l(5,:)*1e-3),'.')
-    xlabel('Dist along duct (\mum)')
-    title('Lumenal pH')
-end
+%{
+figure
+subplot(3,2,1)
+plot(CellPos, y_c(1,I),'.')
+hold on
+plot(CellPos, y_c(2,I),'.')
+hold off
+legend('V_A','V_B')
+ylabel('mV')
+title('Membrane Potential')
+subplot(3,2,2)
+w = y_c(3,I);
+plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
+hold on
+plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.')
+hold off
+legend('ID', 'SD')
+ylabel('\mum^3')
+title('Cell Volumn')
+subplot(3,2,3)
+plot(CellPos, y_c(4,I),'.')
+hold on
+plot(CellPos, y_c(5,I),'.')
+plot(CellPos, y_c(6,I),'.')
+plot(CellPos, y_c(7,I),'.')
+hold off
+legend('Na_C','K_C','Cl_C','HCO_C')
+ylabel('mM')
+title('Cellular Concentration')
+subplot(3,2,4)
+w = -log10(y_c(8,I)*1e-3);
+plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
+hold on
+plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.')
+hold off
+legend('ID', 'SD')
+title('Cellular pH')
+subplot(3,2,5)
+plot(IntPos, y_l(1,:),'.')
+hold on
+plot(IntPos, y_l(2,:),'.')
+plot(IntPos, y_l(3,:),'.')
+plot(IntPos, y_l(4,:),'.')
+hold off
+legend('Na_A','K_A','Cl_A','HCO_A')
+ylabel('mM')
+xlabel('Dist along duct (\mum)')
+title('Lumenal Concentration')
+subplot(3,2,6)
+plot(IntPos, -log10(y_l(5,:)*1e-3),'.')
+xlabel('Dist along duct (\mum)')
+title('Lumenal pH')
+%}
 
 %% Plotting the simplified cell model
+%{
+figure
+CellPos = [2,1];
+IntPos = [2,1];
+subplot(3,2,1)
+plot(CellPos, y_c(1,I),'.','MarkerSize',20)
+hold on
+plot(CellPos, y_c(2,I),'.','MarkerSize',20)
+hold off
+legend('V_A','V_B')
+ylabel('mV')
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('ID cell           SD cell')
+title('Membrane Potential')
+subplot(3,2,2)
+w = y_c(3,I);
+plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.','MarkerSize',20)
+hold on
+plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.','MarkerSize',20)
+hold off
+legend('ID', 'SD')
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('ID cell           SD cell')
+ylabel('\mum^3')
+title('Cell Volumn')
+subplot(3,2,3)
+plot(CellPos, y_c(4,I),'.','MarkerSize',20)
+hold on
+plot(CellPos, y_c(5,I),'.','MarkerSize',20)
+plot(CellPos, y_c(6,I),'.','MarkerSize',20)
+plot(CellPos, y_c(7,I),'.','MarkerSize',20)
+hold off
+legend('Na_C','K_C','Cl_C','HCO_C')
+ylabel('mM')
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('ID cell           SD cell')
+title('Cellular Concentration')
+subplot(3,2,4)
+w = -log10(y_c(8,I)*1e-3);
+plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.','MarkerSize',20)
+hold on
+plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.','MarkerSize',20)
+hold off
+legend('ID', 'SD')
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('ID cell           SD cell')
+title('Cellular pH')
+subplot(3,2,5)
+plot(IntPos, y_l(1,:),'.','MarkerSize',20)
+hold on
+plot(IntPos, y_l(2,:),'.','MarkerSize',20)
+plot(IntPos, y_l(3,:),'.','MarkerSize',20)
+plot(IntPos, y_l(4,:),'.','MarkerSize',20)
+hold off
+legend('Na_A','K_A','Cl_A','HCO_A')
+ylabel('mM')
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('Intercalated Duct    Striated Duct')
+title('Lumenal Concentration')
+subplot(3,2,6)
+plot(IntPos, -log10(y_l(5,:)*1e-3),'.','MarkerSize',20)
+set(gca,'XTick','');
+xlim([0,3])
+xlabel('Intercalated Duct    Striated Duct')
+title('Lumenal pH')
+%}
 
-if display_plots & simplify_model
-    figure
-    CellPos = [2,1];
-    IntPos = [2,1];
-    subplot(3,2,1)
-    plot(CellPos, y_c(1,I),'.','MarkerSize',20)
-    hold on
-    plot(CellPos, y_c(2,I),'.','MarkerSize',20)
-    hold off
-    legend('V_A','V_B')
-    ylabel('mV')
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('ID cell           SD cell')
-    title('Membrane Potential')
-    subplot(3,2,2)
-    w = y_c(3,I);
-    plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.','MarkerSize',20)
-    hold on
-    plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.','MarkerSize',20)
-    hold off
-    legend('ID', 'SD')
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('ID cell           SD cell')
-    ylabel('\mum^3')
-    title('Cell Volumn')
-    subplot(3,2,3)
-    plot(CellPos, y_c(4,I),'.','MarkerSize',20)
-    hold on
-    plot(CellPos, y_c(5,I),'.','MarkerSize',20)
-    plot(CellPos, y_c(6,I),'.','MarkerSize',20)
-    plot(CellPos, y_c(7,I),'.','MarkerSize',20)
-    hold off
-    legend('Na_C','K_C','Cl_C','HCO_C')
-    ylabel('mM')
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('ID cell           SD cell')
-    title('Cellular Concentration')
-    subplot(3,2,4)
-    w = -log10(y_c(8,I)*1e-3);
-    plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.','MarkerSize',20)
-    hold on
-    plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.','MarkerSize',20)
-    hold off
-    legend('ID', 'SD')
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('ID cell           SD cell')
-    title('Cellular pH')
-    subplot(3,2,5)
-    plot(IntPos, y_l(1,:),'.','MarkerSize',20)
-    hold on
-    plot(IntPos, y_l(2,:),'.','MarkerSize',20)
-    plot(IntPos, y_l(3,:),'.','MarkerSize',20)
-    plot(IntPos, y_l(4,:),'.','MarkerSize',20)
-    hold off
-    legend('Na_A','K_A','Cl_A','HCO_A')
-    ylabel('mM')
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('Intercalated Duct    Striated Duct')
-    title('Lumenal Concentration')
-    subplot(3,2,6)
-    plot(IntPos, -log10(y_l(5,:)*1e-3),'.','MarkerSize',20)
-    set(gca,'XTick','');
-    xlim([0,3])
-    xlabel('Intercalated Duct    Striated Duct')
-    title('Lumenal pH')
-end
+

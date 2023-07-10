@@ -1,4 +1,4 @@
-function [] = run_duct(parms_file,simplify_model,display_plots,acinus_data_file)
+function [] = run_duct(parms_file, gui_parms, acinus_data_file)
 cd('duct');
 disp('Executing main_script...');
 main_script; % This a script, NOT a function. All variables remain in scope.
