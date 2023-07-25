@@ -158,6 +158,7 @@ CellPos = max_length - CellPos;
 %% Plotting the full model
 %{
 figure
+
 subplot(3,2,1)
 plot(CellPos, y_c(1,I),'.')
 hold on
@@ -166,6 +167,7 @@ hold off
 legend('V_A','V_B')
 ylabel('mV')
 title('Membrane Potential')
+
 subplot(3,2,2)
 w = y_c(3,I);
 plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
@@ -175,6 +177,7 @@ hold off
 legend('ID', 'SD')
 ylabel('\mum^3')
 title('Cell Volumn')
+
 subplot(3,2,3)
 plot(CellPos, y_c(4,I),'.')
 hold on
@@ -185,6 +188,7 @@ hold off
 legend('Na_C','K_C','Cl_C','HCO_C')
 ylabel('mM')
 title('Cellular Concentration')
+
 subplot(3,2,4)
 w = -log10(y_c(8,I)*1e-3);
 plot(CellPos(find(CellType(1,I))), w(find(CellType(1,I))),'.')
@@ -193,6 +197,7 @@ plot(CellPos(find(CellType(2,I))), w(find(CellType(2,I))),'.')
 hold off
 legend('ID', 'SD')
 title('Cellular pH')
+
 subplot(3,2,5)
 plot(IntPos, y_l(1,:),'.')
 hold on
@@ -204,6 +209,7 @@ legend('Na_A','K_A','Cl_A','HCO_A')
 ylabel('mM')
 xlabel('Dist along duct (\mum)')
 title('Lumenal Concentration')
+
 subplot(3,2,6)
 plot(IntPos, -log10(y_l(5,:)*1e-3),'.')
 xlabel('Dist along duct (\mum)')

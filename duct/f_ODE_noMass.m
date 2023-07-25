@@ -364,7 +364,7 @@ flow_rate = v.*A_L;
 if displ
     fprintf('initial P.S. flow rate: %2.2f  um3 \n',(5*v_up(end)*A_L(end))) % um^3/s
     fprintf('final P.S. flow rate:   %2.2f  um3 \n',(v(1)*A_L(1))) % um^3/s
-    fprintf('percentage:             %2.2f  ',(v(1)*A_L(1)-5*v_up(end)*A_L(end))/(5*v_up(end)*A_L(end))*100)
+    fprintf('percentage:             %2.2f  \n',(v(1)*A_L(1)-5*v_up(end)*A_L(end))/(5*v_up(end)*A_L(end))*100)
     
     IntPos = zeros(1,lumen_prop.n_disc);
     IntPos(1) = lumen_prop.disc_length(1);
@@ -389,7 +389,13 @@ if displ
     end
     CellPos = max_length - CellPos;
     
-    figure(4)
+    fig = figure;
+    if dynamic
+        set(fig, 'Name', 'Stimulated Fluxes');
+    else
+        set(fig, 'Name', 'Steady State Fluxes');
+    end
+    
     subplot(4,4,1)
     plot(CellPos,flux.V_A,'.')
     hold on
@@ -523,7 +529,12 @@ if displ
     % x axis plot range, proximal and distal
     lim_p = 0;%53;
     lim_d = 145;
-    figure(5)
+    fig = figure;
+    if dynamic
+        set(fig, 'Name', 'Stimulated Fluxes');
+    else
+        set(fig, 'Name', 'Steady State Fluxes');
+    end
     subplot(4,2,1)
     x = CellPos(c_idx);
     y = zeros(1,length(x));

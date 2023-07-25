@@ -64,6 +64,9 @@ param_i.ae2_alpha_b = gui_parms.p_i.ae2_alpha_b;
 param_i.g_p_cl = gui_parms.p_i.g_p_cl;
 param_i.l_a = gui_parms.p_i.l_a;
 param_i.l_b = gui_parms.p_i.l_b;
+param_i.g_p_na = gui_parms.p_i.g_p_na;
+param_i.g_p_k = gui_parms.p_i.g_p_k;
+
 % striated
 param_s.g_enac = gui_parms.p_s.g_enac; 
 param_s.g_cftr = gui_parms.p_s.g_cftr;
@@ -78,6 +81,12 @@ param_s.ae2_alpha_b = gui_parms.p_s.ae2_alpha_b;
 param_s.g_p_cl = gui_parms.p_s.g_p_cl;
 param_s.l_a = gui_parms.p_s.l_a;
 param_s.l_b = gui_parms.p_s.l_b;
+param_s.g_p_na = gui_parms.p_s.g_p_na;
+param_s.g_p_k = gui_parms.p_s.g_p_k;
+
+% common
+param_c.nhe_alpha_a = gui_parms.p_c.nhe_alpha_a;
+param_c.nhe_alpha_b = gui_parms.p_c.nhe_alpha_b;
 
 mergestructs = @(x,y) cell2struct([struct2cell(x);struct2cell(y)],[fieldnames(x);fieldnames(y)]);
 

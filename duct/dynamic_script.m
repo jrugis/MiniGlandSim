@@ -24,7 +24,9 @@ tic
 toc
 
 % save results for plotting and 3D display
-save("result_duct", "tstep", "cell_prop", "z", "lumen_prop");
+save(strcat("result_",results_label), ...
+    "tstep", "time_series", "P", "cell_prop", "s_cell_prop", ...
+    "t", "y", "z", "lumen_prop", "s_lumen_prop");
 
 %% plot whole duct at a fixed time point
 %{
@@ -61,11 +63,13 @@ end
 CellPos = max_length - CellPos;
 
 figure
+
 subplot(3,2,1)
 plot(CellPos, yyy_c([1,2],I),'.')
 legend('V_A','V_B')
 ylabel('mV')
 title('Membrane Potential')
+
 subplot(3,2,2)
 w = yyy_c(3,I);
 plot(CellPos(find(CellType(1,:))), w(find(CellType(1,:))),'.')
@@ -75,14 +79,17 @@ hold off
 legend('ID', 'SD')
 ylabel('\mu m^3')
 title('Cell Volume')
+
 subplot(3,2,3)
 plot(CellPos, yyy_c([4,5,6,7],I),'.')
 legend('Na_C','K_C','Cl_C','HCO_C')
 ylabel('mM')
 title('Cellular Concentration')
+
 subplot(3,2,4)
 plot(CellPos, -log10(yyy_c(8,I)*1e-3),'.')
 title('Cellular pH')
+
 subplot(3,2,5)
 plot(IntPos, yyy_l([1,2,3,4],:),'.')
 legend('Na_A','K_A','Cl_A','HCO_A')
