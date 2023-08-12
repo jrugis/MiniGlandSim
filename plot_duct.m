@@ -33,8 +33,7 @@ end
 [CellPos,I] = sort(CellPos);
 CellPos = max_length - CellPos;
 
-%% plot whole duct at a fixed time point
-
+% plot
 if p.ductatfixedtime
     time = 500;% second
     time_ind = time/tstep +1;
@@ -87,6 +86,7 @@ if p.ductatfixedtime
     title('Luminal pH')
 end
 
+% plot
 if p.ductacrossalltime
     time = 500;% second
     time_ind = time/tstep +1;
@@ -166,12 +166,14 @@ if p.ductacrossalltime
     title('D : Cell volume')
 end
 
+% plot steady state fluxes
 if p.steadystatefluxes
     cd('duct');
     f_ODE_noMass(1, y(end,:), P, s_cell_prop, s_lumen_prop, 1, 0, 0);
     cd('..');
 end
 
+% plot stimulated fluxes
 if p.stimulatedfluxes
     cd('duct');
     ind = find(t==400);

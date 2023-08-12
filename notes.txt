@@ -1,3 +1,22 @@
+User parameters
+===============
+G_ENaC (apical ENaC conductance)
+G_CFTR (apical CFTR conductance, only striated duct)
+G_CaCC (apical CaCC conductance, only intercalated duct)
+G_BK (apical Maxi-K conductance)
+G_K_B (basolateral K+ conductance)
+G_Na_B (basolateral Na+ conductance)
+G_Cl_B (basolateral Cl- conductance)
+NKA_alpha_B (basolateral NaK ATPase density)
+G_P_Cl (tight-junctional Cl- conductance)
+L_A (apical water permeability)
+L_B (basolateral water permeability)
+
+And here are some additional parameters which, if changed, could potentially lead to unphysiological results.
+G_P_Na (tight-junctional Na+ conductance)
+G_P_K (tight-junctional K+ conductance)
+
+
 Changes to code 
 ===============
 Striated_Duct_Method_of_Lines => MiniGland/duct:
