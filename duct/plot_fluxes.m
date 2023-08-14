@@ -2,8 +2,8 @@ function plot_fluxes(figure_no, CellPos, IntPos, flux, dwAdt)
     
     F = 96485.3329; % C/mol Faraday's constant 
 
-    %figure(figure_no)
-    figure()
+    figure(figure_no)
+    %figure()
 
     subplot(4,4,1)
     plot(CellPos,flux.V_A,'.')

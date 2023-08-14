@@ -451,9 +451,11 @@ if displ
     end
     CellPos = max_length - CellPos;
     
-    figure_no = 4; % not used!
+%%%%%%%%%%%%
+    figure_no = 40; % not used!
     plot_fluxes(figure_no, CellPos, IntPos, flux, dwAdt)
-    
+%%%%%%%%%%%%
+
 %     c_idx = find(CellType(2,:));
     c_idx = 1:n_c;
     l_idx = 1:n_l;
@@ -463,8 +465,8 @@ if displ
     x_range = [0,180];
     
 %% plot the apical fluxes breakdown
-    %figure(5)
-    figure()
+    figure(50)
+    %figure()
     ax(1) = subplot(4,2,1);
     y = zeros(1,length(z));
     y(1,:) = flux.I_ENaC(l_idx).*1e-6;
@@ -562,8 +564,8 @@ if displ
     
      
     %% plot the apical and basolateral fluxes
-    %figure(7)
-    figure()
+    figure(70)
+    %figure()
     
     for k = 1:8
     ax(k) = subplot(4,2,k);
