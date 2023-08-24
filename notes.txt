@@ -1,20 +1,26 @@
 User parameters
 ===============
+AE_G_A (apical anion exchanger density)
+G_CaCC (apical CaCC conductance)
+G_CFTR (apical CFTR conductance)
 G_ENaC (apical ENaC conductance)
-G_CFTR (apical CFTR conductance, only striated duct)
-G_CaCC (apical CaCC conductance, only intercalated duct)
 G_BK (apical Maxi-K conductance)
+NBC_G_A (apical NBC cotransporter density)
+NHE_G_A (apical NHE cotransporter density)
+L_A (apical water permeability)
+
+AE_G_B (basolateral anion exchanger density)
+G_Cl_B (basolateral Cl- conductance)
 G_K_B (basolateral K+ conductance)
 G_Na_B (basolateral Na+ conductance)
-G_Cl_B (basolateral Cl- conductance)
 NKA_alpha_B (basolateral NaK ATPase density)
-G_P_Cl (tight-junctional Cl- conductance)
-L_A (apical water permeability)
+NBC_G_B (basolateral NBC cotransporter density)
+NHE_G_B (basolateral NHE cotransporter density)
 L_B (basolateral water permeability)
 
-And here are some additional parameters which, if changed, could potentially lead to unphysiological results.
-G_P_Na (tight-junctional Na+ conductance)
+G_P_Cl (tight-junctional Cl- conductance)
 G_P_K (tight-junctional K+ conductance)
+G_P_Na (tight-junctional Na+ conductance)
 
 
 Changes to code 

@@ -14,6 +14,7 @@
 time_series.Q = time_series.Q*7;    
 % plot(time_series.time,time_series.Q)
 
+%{
 tstep = 0.1;
 tspan = [0:tstep:1000];%[0:tstep:400,401:25000];
 % tspan = [0,1000];
@@ -22,10 +23,28 @@ x = y(end,:);
 tic
 [t,z] = ode15s(@(t,z) f_ODE_noMass(t,z,P,s_cell_prop,s_lumen_prop,0,1,time_series), tspan, x);
 toc
+%}
+step = 0.1;
+tspan1 = [0:0.1:400];%[0:step:400,401:25000];
+x = y(end,:);
+
+tic
+[t,z1] = ode15s(@(t,z) f_ODE_noMass(t,z,P,s_cell_prop,s_lumen_prop,0,1,time_series), tspan1, x);
+toc
+
+tspan2 = [400.1:0.1:1000];
+x = z1(end,:);
+
+tic
+[t,z2] = ode15s(@(t,z) f_ODE_noMass(t,z,P,s_cell_prop,s_lumen_prop,0,1,time_series), tspan2, x);
+toc
+
+t = [tspan1,tspan2];
+z = [z1;z2];
 
 % save results for plotting and 3D display
 save(strcat("result_",results_label), ...
-    "tstep", "time_series", "P", "cell_prop", "s_cell_prop", ...
+    "step", "time_series", "P", "cell_prop", "s_cell_prop", ...
     "t", "y", "z", "lumen_prop", "s_lumen_prop");
 
 %% plot whole duct at a fixed time point

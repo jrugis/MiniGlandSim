@@ -51,36 +51,44 @@ param_c = INI.duct_common;
 
 % get the interactive user adjustments to parameters from GUI
 % intercalated
-param_i.g_enac = gui_parms.p_i.g_enac; 
+param_i.ae_g_a = gui_parms.p_i.ae_g_a; % apical
 param_i.g_cacc = gui_parms.p_i.g_cacc;
+param_i.g_cftr = gui_parms.p_i.g_cftr;
+param_i.g_enac = gui_parms.p_i.g_enac; 
 param_i.g_bk = gui_parms.p_i.g_bk;
+param_i.nbc_g_a = gui_parms.p_i.nbc_g_a;
+param_i.nhe_g_a = gui_parms.p_i.nhe_g_a;
+param_i.l_a = gui_parms.p_i.l_a;
+param_i.ae_g_b = gui_parms.p_i.ae_g_b; % basal 
+param_i.g_cl_b = gui_parms.p_i.g_cl_b;
 param_i.g_k_b = gui_parms.p_i.g_k_b;
 param_i.g_na_b = gui_parms.p_i.g_na_b;
-param_i.g_cl_b = gui_parms.p_i.g_cl_b;
 param_i.nka_alpha_b = gui_parms.p_i.nka_alpha_b;
-%param_i.nbc_alpha_a = gui_parms.p_i.nbc_alpha_a;
-%param_i.nbc_alpha_b = gui_parms.p_i.nbc_alpha_b;
-%param_i.ae2_alpha_b = gui_parms.p_i.ae2_alpha_b;
-param_i.g_p_cl = gui_parms.p_i.g_p_cl;
-param_i.l_a = gui_parms.p_i.l_a;
+param_i.nbc_g_b = gui_parms.p_i.nbc_g_b;
+param_i.nhe_g_b = gui_parms.p_i.nhe_g_b;
 param_i.l_b = gui_parms.p_i.l_b;
-param_i.g_p_na = gui_parms.p_i.g_p_na;
+param_i.g_p_cl = gui_parms.p_i.g_p_cl; % tight-junctional
 param_i.g_p_k = gui_parms.p_i.g_p_k;
+param_i.g_p_na = gui_parms.p_i.g_p_na;
 
 % striated
-param_s.g_enac = gui_parms.p_s.g_enac; 
+param_s.ae_g_a = gui_parms.p_s.ae_g_a; % apical
+param_s.g_cacc = gui_parms.p_s.g_cacc;
 param_s.g_cftr = gui_parms.p_s.g_cftr;
+param_s.g_enac = gui_parms.p_s.g_enac; 
 param_s.g_bk = gui_parms.p_s.g_bk;
+param_s.nbc_g_a = gui_parms.p_s.nbc_g_a;
+param_s.nhe_g_a = gui_parms.p_s.nhe_g_a;
+param_s.l_a = gui_parms.p_s.l_a;
+param_s.ae_g_b = gui_parms.p_s.ae_g_b; % basal
+param_s.g_cl_b = gui_parms.p_s.g_cl_b;
 param_s.g_k_b = gui_parms.p_s.g_k_b;
 param_s.g_na_b = gui_parms.p_s.g_na_b;
-param_s.g_cl_b = gui_parms.p_s.g_cl_b;
 param_s.nka_alpha_b = gui_parms.p_s.nka_alpha_b;
-%param_s.nbc_alpha_a = gui_parms.p_s.nbc_alpha_a;
-%param_s.nbc_alpha_b = gui_parms.p_s.nbc_alpha_b;
-%param_s.ae2_alpha_b = gui_parms.p_s.ae2_alpha_b;
-param_s.g_p_cl = gui_parms.p_s.g_p_cl;
-param_s.l_a = gui_parms.p_s.l_a;
+param_s.nbc_g_b = gui_parms.p_s.nbc_g_b;
+param_s.nhe_g_b = gui_parms.p_s.nhe_g_b;
 param_s.l_b = gui_parms.p_s.l_b;
+param_s.g_p_cl = gui_parms.p_s.g_p_cl; % tight-junctional
 param_s.g_p_na = gui_parms.p_s.g_p_na;
 param_s.g_p_k = gui_parms.p_s.g_p_k;
 
