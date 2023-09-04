@@ -1,3 +1,6 @@
+SolverResetMethod = 'Fast' | 'Robust'
+
+
 User parameters
 ===============
 AE_G_A (apical anion exchanger density)

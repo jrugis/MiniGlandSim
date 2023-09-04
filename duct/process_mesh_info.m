@@ -146,6 +146,7 @@ lumen_prop.disc_X_area = disc_X_area;
 lumen_prop.disc_out_Vec = disc_out_Vec;
 lumen_prop.acinus_disc = acinus_disc;
 lumen_prop.disc_centres = centres;
+lumen_prop.d_s_Vec = d_s_Vec;
 
 %% process duct cells
 S_fnames = dir(strcat(mesh_folder,"/*sCell*.ply"));
