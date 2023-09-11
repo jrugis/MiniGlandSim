@@ -60,18 +60,15 @@ end
 %% subsampling with time, first 500s @ 0.1s step, second 100s at 1s step
 
 time_sample = [1:5000,5001:10:10001];
-
 t_sampled = t(time_sample);
-
 zzzz = zzzz(time_sample,:);
-save dynamic_data zzzz
-
 flowrate = flowrate(time_sample,:);
-save dynamic_flow flowrate
 
-save lumen_prop s_lumen_prop
+%save dynamic_data zzzz
+%save dynamic_flow flowrate
+%save lumen_prop s_lumen_prop
 
 %% save custom binary data file for visualisation in Unity
-%duct_save_binary(zzzz(time_sample,:), flowrate, s_lumen_prop);
+duct_save_binary(zzzz, flowrate, s_lumen_prop);
 
 

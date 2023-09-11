@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="4007926823" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>MiniGland</param.appname>
+  <configuration build-checksum="390668323" file="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim.prj" location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim" name="mini_gland_sim" preferred-package-location="/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_redistribution" preferred-package-type="package.type.app" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>mini_gland_sim</param.appname>
     <param.icon>${PROJECT_ROOT}/mini_gland_sim_resources/icon.icns</param.icon>
     <param.icons>
       <file>${PROJECT_ROOT}/mini_gland_sim_resources/icon_48.png</file>
@@ -16,7 +16,7 @@
     <param.description />
     <param.screenshot>${PROJECT_ROOT}/splash.jpg</param.screenshot>
     <param.guid />
-    <param.installpath.string>/MiniGland/</param.installpath.string>
+    <param.installpath.string>/mini_gland_sim/</param.installpath.string>
     <param.installpath.combo>option.installpath.systemwideapp</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -95,7 +95,10 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
+      <file>${PROJECT_ROOT}/convert_data.m</file>
       <file>${PROJECT_ROOT}/duct/cell_lumen_prop.mat</file>
+      <file>${PROJECT_ROOT}/duct/data_post_processing.m</file>
+      <file>${PROJECT_ROOT}/duct/duct_save_binary.m</file>
       <file>${PROJECT_ROOT}/duct/dynamic_script.m</file>
       <file>${PROJECT_ROOT}/duct/f_ODE_noMass.m</file>
       <file>${PROJECT_ROOT}/duct/get_parameters.m</file>
@@ -113,8 +116,8 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="readme.txt" optional="true">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/readme.txt</file>
-      <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="MiniGland.app" optional="false">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/MiniGland.app</file>
-      <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="run_MiniGland.sh" optional="false">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/run_MiniGland.sh</file>
+      <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="run_mini_gland_sim.sh" optional="false">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/run_mini_gland_sim.sh</file>
+      <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="mini_gland_sim.app" optional="false">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/mini_gland_sim.app</file>
       <file location="${PROJECT_ROOT}/mini_gland_sim/for_testing" name="splash.png" optional="false">/Users/jrug001/Desktop/nesi00119/MiniGlandSim/mini_gland_sim/for_testing/splash.png</file>
     </build-deliverables>
     <workflow />
