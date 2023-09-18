@@ -38,7 +38,7 @@ for i = 0:n_l-1
 end
 
 % insert zero matrix to cell with no apical membrane
-cell_no = 25;
+cell_no = 45; %%%%% HARD CODED!!!!! %%%%%%
 z_insert = zeros(n_t, n_c_remain);
 z_insert(:,1) = 23;
 z_insert(:,2) = 140;
@@ -46,6 +46,7 @@ z_insert(:,3) = 20;
 z_insert(:,4) = 20;
 z_insert(:,5) = 7.3;
 insrt_idx = (cell_no - 1)*n_c_remain;
+%z_insert = zzz(:,insrt_idx:insrt_idx+4); % duplicate previous cell data
 zzzz = [zzz(:,1:insrt_idx), z_insert, zzz(:,insrt_idx+1:end)];
 
 %% get luminal water flow rates across time
