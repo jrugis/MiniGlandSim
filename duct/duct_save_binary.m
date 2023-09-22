@@ -20,12 +20,13 @@ ndiscs = s_lumen_prop.n_disc;
 ddiam = sqrt(s_lumen_prop.disc_X_area/pi)*2;
 dleng = s_lumen_prop.disc_length;
 dsegs = s_lumen_prop.d_s_Vec;
-ndsegs = max(dsegs);
-dcenters = double.empty(0,3);
-for i = 1:ndsegs % DATA "ERROR" CORRECTION:flip order of centers within each segment
-    scenters = flip(s_lumen_prop.disc_centres(find(dsegs == i), :));
-    dcenters = [dcenters; scenters];
-end
+dcenters = s_lumen_prop.disc_centres;
+%ndsegs = max(dsegs);
+%dcenters = double.empty(0,3);
+%for i = 1:ndsegs % DATA "ERROR" CORRECTION:flip order of centers within each segment
+%    scenters = flip(s_lumen_prop.disc_centres(find(dsegs == i), :));
+%    dcenters = [dcenters; scenters];
+%end
 
 dvects = zeros([ndiscs 3]); % calculate disc direction vectors
 s = 0;                      % previous duct segment
