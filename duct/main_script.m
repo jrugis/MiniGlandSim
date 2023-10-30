@@ -16,7 +16,7 @@
 %% Model input setup
 
 L_int = 1; % um length of lumen discretisation interval
-PSflow = 7*11.91; % um3/s volumetric primary saliva flow rate
+%PSflow = 7*11.91; % um3/s volumetric primary saliva flow rate
 
 fields = {'Na'; 'K'; 'Cl'; 'HCO'; 'H'; 'CO'};
 Int = [140.2; 5.3; 102.6; 24.7+1000*10^(-7.35); 1000*10^(-7.35); 5]; % concentration of interstitium
@@ -25,14 +25,15 @@ CIC = [17; 140; 12; 25+1000*10^(-7.35); 1000*10^(-7.35); 2.6];  % cellular initi
 %LIC = [136.95; 6.8; 115.3; 28.47+1000*10^(-7.3); 1000*10^(-7.3); 1]; % lumenal initial concentration
 %%%%%%%%%%%%%%
 load("../acinus/" + acinus_data_file); % get concentration of Primary Saliva from acinus simulation
-time_series.Q = movmean(time_series.Q,10);
-time_series.Na = movmean(time_series.Na,10);
-time_series.K = movmean(time_series.K,10);
-time_series.Cl = movmean(time_series.Cl,10);
-time_series.HCO = movmean(time_series.HCO,10);
-time_series.H = movmean(time_series.H,10);
+%time_series.Q = movmean(time_series.Q,10);
+%time_series.Na = movmean(time_series.Na,10);
+%time_series.K = movmean(time_series.K,10);
+%time_series.Cl = movmean(time_series.Cl,10);
+%time_series.HCO = movmean(time_series.HCO,10);
+%time_series.H = movmean(time_series.H,10);
 PS = [time_series.Na(1); time_series.K(1); time_series.Cl(1); time_series.HCO(1); time_series.H(1); 1];
 LIC = PS; % lumenal initial concentration is same as Primary Saliva concentration
+PSflow = 7*time_series.Q(1); % um3/s volumetric primary saliva flow rate
 %%%%%%%%%%%%%%
 
 Conc = struct;
@@ -75,7 +76,8 @@ x = setup_IC(Conc, s_cell_prop, s_lumen_prop);
 % Setup and solve the ODE
 
 % f_ODE(1,x,P,cell_prop,lumen_prop,1);
-tspan = [0,20000];
+tspan = [0,20000]; % 1000s
+%tspan = [0,10000];   % 500s
 P = P_s;
 
 % ===========================================

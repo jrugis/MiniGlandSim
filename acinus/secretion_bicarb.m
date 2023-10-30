@@ -13,10 +13,12 @@ Va = x(10);
 Vb = x(11);
 HCOl = x(12);
 Hl = x(13);
+Q = x(14);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NaKbasalfactor = 0.7;                                                    % Fraction of NaK ATPase in the basal membrane
+%NaKbasalfactor = 0.7;                                                    % Fraction of NaK ATPase in the basal membrane
+NaKbasalfactor = par.bNaKf;                                                    % Fraction of NaK ATPase in the basal membrane
 JNaKb = NaKbasalfactor*basalarea * par.aNaK * ( par.r * par.Ke^2 * Na^3 ...
                   / ( par.Ke^2 + par.alpha1 * Na^3 ) );
 JNaKa = (1-NaKbasalfactor)*apicalarea * par.aNaK * ( par.r * Kl^2 * Na^3 ...
@@ -96,6 +98,7 @@ JHCO = 0.3 * par.GCl * PrCl * ( Va + VHCO ) / par.F;                        % ap
 % Vb = x(11);
 % HCOl = x(12);
 % Hl = x(13);
+%Q = x(14);
 
 Jw = Qb - Qa;
 
@@ -112,6 +115,7 @@ dx(10) = -JCl - JHCO - JNaKa - JKa - JtK - JtNa;
 dx(11) = -JKb - JNaKb       + JtK + JtNa;
 dx(12) = ( JBBA - JHCO - Qtot * HCOl ) / par.wl; 
 dx(13) = ( JBBA - Qtot * Hl) / par.wl;
+dx(14) = Qtot;
 
 dx = dx';
 

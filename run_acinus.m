@@ -1,7 +1,6 @@
-function [] = run_acinus()
-test = 1;
+function [] = run_acinus(cells, gui_parms, results_label)
 cd 'acinus';
-save('mytest');
+saliva_model_bicarb(); % This a script, NOT a function. All variables remain in scope.
 cd '..'
 end
 

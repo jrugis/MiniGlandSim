@@ -17,34 +17,48 @@
 
 % We do the IPR fluxes as boundary fluxes on the apical membrane.
 
-clear all
-close all
-clc
+%clear all
+%close all
+%clc
+tic
 
 % Loop over all the 7 real cells
 % Also loop over three Vplc values. So this is a long run
 
 sim_or_real = 'sim';    % Choose simulated or real cells
-Vplc_values = [0.001 0.002 0.003];
+%Vplc_values = [0.001 0.002 0.003];
+%Vplc_values = [0.001];
 
 load('par.mat');                        % Load the parameters
+par.VPLC = gui_parms.VPLC;
+%display(par.VPLC);
+%par.VPLC = 0.001;
 par.Ul = 10;                            % Change from Shan for the new model
-   
-for j=1:14   % loop over the cells
-    cell_no = j
+
+%for j=4:4   % loop over the cells
+for j = cells   % loop over the cells
+    display(strcat('cell: ',num2str(j)));
+    cell_no = j;
     load(strcat('cell_meshes/',sim_or_real,'_cell_',num2str(cell_no),'_mesh.mat'));             
     par.volume = volume;                    % Just for convenience
 
-    for k=1:3  % loop over the Vplc values
+    %for k=1:1  % loop over the Vplc values
     %-----------------------------------
     % Make sure all these are set correctly
-    par.VPLC = Vplc_values(k);
+    %par.VPLC = Vplc_values(k);
+    stim_Vplc = par.VPLC; % VPLC value during stimulation 
+    par.VPLC = 0;         % VPLC initially OFF for steady state calculation
     par.spatialchoose = 1;                  % 1 for spatially distributed IPR.
     par.apicalKCadensity = 1;               % 1 for equal density of KCa on apical and basal. Can run from 0 to bigger than 1.
-    smallsave = 1;                          % 1 for saving only the secretion stuff, not all the calcium traces. 0 otherwise
+    smallsave = 0;                          % 1 for saving only the secretion stuff, not all the calcium traces. 0 otherwise
     %outputfile = 'new_saliva_output.mat';
-    outputfile = strcat('outputs/',sim_or_real,'_cell_',num2str(cell_no),'_VPLC',num2str(par.VPLC),'.mat');
-    tend = 100; 
+    %outputfile = strcat('outputs/',sim_or_real,'_cell_',num2str(cell_no),'_VPLC',num2str(par.VPLC),'.mat');
+    outputfile = strcat('result_cell',num2str(cell_no),'_',results_label,'.mat');
+    %tend = 3;
+    %ton = 1;
+    %toff = 2; % not used except for a really long run
+    tend = 600;
+    ton = 200;
     toff = 400; % not used except for a really long run
 
     %-----------------------------------
@@ -62,7 +76,7 @@ for j=1:14   % loop over the cells
         %   Third np components of u    -   h
 
         % options and mass matrix for ode15s (the fluid secretion solve)
-        M = eye(13);
+        M = eye(14);
         M(10,10)=0; M(11,11)=0;   % 2 DAEs for Va and Vb
         options = odeset('Mass',M,'RelTol', 1e-11, 'AbsTol', 1e-11);                    
 
@@ -72,8 +86,10 @@ for j=1:14   % loop over the cells
         SSsol(:,1) = IC;
 
         for i=1:numt
-            if (tim(i)>toff)   % for when we want to turn the stimulus off again
+            if (tim(i)>toff)    % stimulation OFF
                 par.VPLC=0;
+            elseif (tim(i)>ton) % stimulation ON 
+                par.VPLC=stim_Vplc;
             end
 
             % First step forward the secretion model by delt, using ode15s. c, ip
@@ -116,19 +132,21 @@ for j=1:14   % loop over the cells
 
             % Just to keep track of where you are
             if (tim(i)==floor(tim(i))) 
-                display(tim(i)) 
+                display(tim(i))
             end
 
         end
 
-        if smallsave==1
-        save(outputfile,'tim','SSsol','par')
-        else
-        save(outputfile)
-        end
-    end % of the loop over the VPLC values
+        %if smallsave==1
+        %save(strcat(outputfile,'RAW'),'tim','SSsol','par')
+        %else
+        save(strcat('FULL-', outputfile))
+        %end
+        
+        save4duct(outputfile,par,tim,SSsol);
+    %end % of the loop over the VPLC values
 end % of the loop over the cells
-
+toc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -270,8 +288,9 @@ HCO_0     = 10.16;                                  % bicarbonate in the cell
 H_0       = 0.0001461;                              % H ions in the cell (determines the pH)
 Va_0      = -50.71;                                 % apical membrane potential
 Vb_0      = -51.35;                                 % basal membrane potential
+Q_0       = 11.91;                                  % primary saliva flow rate
 
-IC = [Nal_0,Kl_0,Cll_0,w_0,Na_0,K_0,Cl_0,HCO_0,H_0,Va_0,Vb_0,HCOl_0,Hl_0];   % The initial condition
+IC = [Nal_0,Kl_0,Cll_0,w_0,Na_0,K_0,Cl_0,HCO_0,H_0,Va_0,Vb_0,HCOl_0,Hl_0,Q_0];   % The initial condition
              
 end
 

@@ -1,7 +1,7 @@
 function [] = plot_duct(results_file, p)
 cd('duct');
 if ~isfile(results_file)
-    disp("File not found: result_duct.mat");
+    strcat('File not found: ',results_file)
     cd('..');
     return
 end
@@ -205,7 +205,7 @@ if p.stimulatedduct
         cell_no = x(i);
         cell_no = cell_no - 1;
         n_c = length(cell_prop);
-        cell_prop{x(i)}.type
+        cell_prop{x(i)}.type;
         yy_c = z(:,[cell_no*9+1 : cell_no*9+9]);
         cpos(i) = max_length - cell_prop{x(i)}.mean_dist;
         wC(i,:) = yy_c(t_sample,3);
