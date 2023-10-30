@@ -150,7 +150,8 @@ if p.singleductcell
 end
 
 if p.stimulatedduct
-    t_sample = 1:200:10000;
+    %t_sample = 1:200:10000;
+    t_sample = 1:80:4000;
     x = 1:2:(length(lumen_prop.disc_length)-1);
     pos = zeros(size(x));
     tt = t(t_sample);

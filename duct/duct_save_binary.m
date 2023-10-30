@@ -50,13 +50,16 @@ nsteps = size(flowrate,1);
 fwrite(fbin, nsteps, 'int');
 
 % ********* HARD CODED *************
-fwrite(fbin, [0, 4000], 'int');
+fwrite(fbin, [0, 2000], 'int');  % stimulation ON/OFF steps
 % **********************************
 
 % ********* HARD CODED *************
-% simulation time at each step, first 500s @ 0.1s step, remainder at 1s step
-fwrite(fbin, [0:5000] * 0.1, 'single');                 
-fwrite(fbin, 500.0 + ([5001:nsteps-1] - 5000), 'single');
+%%% simulation time at each step, first 500s @ 0.1s step, remainder at 1s step
+%%fwrite(fbin, [0:5000] * 0.1, 'single');                 
+%%fwrite(fbin, 500.0 + ([5001:nsteps-1] - 5000), 'single');
+
+% simulation time at each step, 400s @ 0.1s step
+fwrite(fbin, [0:3999] * 0.1, 'single');                 
 % **********************************
 
 % total number of simulated variables

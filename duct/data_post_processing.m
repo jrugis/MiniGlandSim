@@ -67,7 +67,8 @@ end
 %% subsampling with time, first 500s @ 0.1s step, second 100s at 1s step
 
 %time_sample = [1:5000,5001:10:10001];
-time_sample = [1:3000,3001:10:4001];
+%time_sample = [1:3000,3001:10:4001];
+time_sample = [1:4000];
 
 t_sampled = t(time_sample);
 
