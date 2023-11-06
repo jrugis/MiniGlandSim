@@ -63,8 +63,10 @@ skip = 10;
 X = p(axis_points, 1);
 Y = p(axis_points, 2);
 Z = p(axis_points, 3);
-[X,order]=sort(X);   % sort the points by the X coordinate so that they can be selected more easily in a regular sequence along the line.
-Y=Y(order);
+%[X,order]=sort(X);   % sort the points by the X coordinate so that they can be selected more easily in a regular sequence along the line.
+%Y=Y(order);
+[Y,order]=sort(Y);   % sort the points by the X coordinate so that they can be selected more easily in a regular sequence along the line.
+X=X(order);
 Z=Z(order);
 scatter3(X(1:skip:end),Y(1:skip:end),Z(1:skip:end),200,'g','MarkerEdgeColor','k','MarkerFaceColor','g')  % don't plot all the points, only a few
 
