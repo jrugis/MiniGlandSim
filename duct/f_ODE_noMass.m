@@ -463,13 +463,14 @@ if displ
     x = CellPos(c_idx);
 
 %%%%%%%%%%%%
-    x_range = [0,190];
+    x_range = [-5,135];
+    x_label = 'ID entry     SD entry                                SD exit';
 %%%%%%%%%%%%
     
     
 %% plot the apical fluxes breakdown
-    figure('Name', 'unstimulated')
-    %figure()
+%{
+    figure()
     ax(1) = subplot(4,2,1);
     y = zeros(1,length(z));
     y(1,:) = flux.I_ENaC(l_idx).*1e-6;
@@ -482,8 +483,7 @@ if displ
     %ylim([-0.15,0.01]) % ex-vivo
     title('Apical Na^+ into lumen')
     ylabel('nA\mum')
-    legend('I_{ENaC}', 'I_{P_{Na}}', 'J_{NBC_A}', 'J_{NHE_A}','AutoUpdate','off','Location','southeast') %,'NumColumns',4
-
+    legend('I_{ENaC}', 'I_{P_{Na}}', 'J_{NBC_A}', 'J_{NHE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     ax(2) = subplot(4,2,3);
     y = zeros(2,length(z));
     y(1,:) = flux.I_BK(l_idx).*1e-6;
@@ -494,7 +494,7 @@ if displ
 %     ylim([-0.008,0.08]) % ex-vivo
     title('Apical K^+ into lumen')
     ylabel('nA/\mum')
-    legend('I_{BK}', 'I_{P_{K}}','AutoUpdate','off')
+    legend('I_{BK}', 'I_{P_{K}}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     ax(3) = subplot(4,2,5);
     y = zeros(2,length(z));
@@ -507,7 +507,7 @@ if displ
 %     ylim([-0.07,0.01]) % ex-vivo
     title('Apical Cl^- into lumen')
     ylabel('nA/\mum')
-    legend('I_{CFTR/CaCC}', 'I_{P_{Cl}}', 'J_{AE_A}','AutoUpdate','off','Location','southeast')
+    legend('I_{CFTR/CaCC}', 'I_{P_{Cl}}', 'J_{AE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     ax(4) = subplot(4,2,7);
     y = zeros(2,length(z));
@@ -524,7 +524,7 @@ if displ
     legend('I_{CFTR_B}', 'J_{buf_A}', 'J_{AE_A}', 'J_{NBC_A}','AutoUpdate','off')
     xlabel('Duct entry                                Duct exit')
     
-    sgtitle('Apical ion fluxs per \mum duct ( positive flux enters lumen )') 
+    sgtitle('Apical ion fluxes per \mum duct ( positive flux enters lumen )') 
     
 
     % plot the apical net fluxes
@@ -533,7 +533,7 @@ if displ
     plot(z,y_na,'.','MarkerSize',10)
 %     ylim([-0.25,0.01])  in-vivo
     %ylim([-0.2,0.01])
-    legend('Na^+','AutoUpdate','off','Location','southeast')
+    legend('Na^+','AutoUpdate','off','Location','southoutside')
 
     ax(6) = subplot(4,2,4);
     plot(z,y_k,'.','MarkerSize',10)
@@ -545,14 +545,14 @@ if displ
     plot(z,y_cl,'.','MarkerSize',10)
 %     ylim([-0.23,0.01]) % in-vivo
     %ylim([-0.1,0.01])
-    legend('Cl^-','AutoUpdate','off','Location','southeast')
+    legend('Cl^-','AutoUpdate','off','Location','southoutside')
 
     ax(8) = subplot(4,2,8);
     plot(z,y_hco,'.','MarkerSize',10)
 %     ylim([-0.002,0.04]) % in-vivo
     %ylim([-0.005,0.041]) % ex-vivo
-    legend('HCO_3^-','AutoUpdate','off')
-    xlabel('Duct entry                                Duct exit')
+    legend('HCO_3^-','AutoUpdate','off','Location','southoutside')
+    xlabel(x_label)
 
     %set(gcf,'position',[200,50,850,900])
 
@@ -564,11 +564,10 @@ if displ
         set(ax(k),'xtick',[],'YGrid','on','xlim',x_range)
 %         line(ax(k), x_range, [0,0], 'Color', 'k', 'LineWidth', 1.2); % Draw line for X axis.
     end
-    
+%}    
      
     %% plot the apical and basolateral fluxes
-    %figure(70)
-    figure('Name', 'unstimulated')
+    figure('Position', [10 10 768 1024])
     
     for k = 1:8
     ax(k) = subplot(4,2,k);
@@ -583,7 +582,7 @@ if displ
     y(4,:) = -flux.J_NHE_A_c(c_idx).*F.*1e-9;
     plot(ax(1),x,y,'.','MarkerSize',10)
     title(ax(1),'Apical Na^+ into lumen ')
-    legend(ax(1),'I_{ENaC}', 'I_{P_{Na}}', 'J_{NBC_A}', 'J_{NHE_A}','AutoUpdate','off','Location','southeast')
+    legend(ax(1),'I_{ENaC}', 'I_{P_{Na}}', 'J_{NBC_A}', 'J_{NHE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     
     % subplot(4,2,1)
     y = zeros(2,length(x));
@@ -593,7 +592,7 @@ if displ
     y(4,:) = flux.J_NHE_B(c_idx).*F.*1e-9;
     plot(ax(2),x,y,'.','MarkerSize',10)
     title(ax(2),'Basolateral Na^+ into cell ')
-    legend(ax(2),'J_{NKA_B}','I_{Na_B}','J_{NBC_B}', 'J_{NHE_B}','AutoUpdate','off','Location','east')
+    legend(ax(2),'J_{NKA_B}','I_{Na_B}','J_{NBC_B}', 'J_{NHE_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     
     % subplot(4,2,3)
     y = zeros(2,length(x));
@@ -601,7 +600,7 @@ if displ
     y(2,:) = flux.I_P_K_c(c_idx).*1e-6;
     plot(ax(3),x,y,'.','MarkerSize',10)
     title(ax(3),'Apical K^+ into lumen ')
-    legend(ax(3),'I_{BK}', 'I_{P_{K}}','AutoUpdate','off','Location','northeast')
+    legend(ax(3),'I_{BK}', 'I_{P_{K}}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,4)
     y = zeros(2,length(x));
@@ -609,7 +608,7 @@ if displ
     y(2,:) = -flux.I_K_B(c_idx).*1e-6;
     plot(ax(4),x,y,'.','MarkerSize',10)
     title(ax(4),'Basolateral K^+ into cell ')
-    legend(ax(4),'J_{NKA_B}','I_{K_B}','AutoUpdate','off','Location','east')
+    legend(ax(4),'J_{NKA_B}','I_{K_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,5)
     y = zeros(2,length(x));
@@ -618,7 +617,7 @@ if displ
     y(3,:) = -flux.J_AE_A_c(c_idx).*F.*1e-9;
     plot(ax(5),x,y,'.','MarkerSize',10)
     title(ax(5),'Apical Cl^- into lumen ')
-    legend(ax(5),'I_{CFTR/CaCC}', 'I_{P_{Cl}}', 'J_{AE_A}','AutoUpdate','off','Location','southeast')
+    legend(ax(5),'I_{CFTR/CaCC}', 'I_{P_{Cl}}', 'J_{AE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,6)
     y = zeros(2,length(x));
@@ -626,7 +625,7 @@ if displ
     y(2,:) = flux.I_Cl_B(c_idx).*1e-6;
     plot(ax(6),x,y,'.','MarkerSize',10)
     title(ax(6),'Basolateral Cl^- into cell ') 
-    legend(ax(6),'J_{AE_B}','I_{Cl_B}','AutoUpdate','off','Location','east')
+    legend(ax(6),'J_{AE_B}','I_{Cl_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,7)
     y = zeros(2,length(x));
@@ -636,8 +635,8 @@ if displ
     y(4,:) = -flux.J_NBC_A_c(c_idx).*F.*1e-9;
     plot(ax(7),x,y,'.','MarkerSize',10)
     title(ax(7),'Apical HCO_3^- into lumen ')
-    xlabel(ax(7),'Duct entry                             Duct exit')
-    legend(ax(7),'I_{CFTR_B}', 'J_{buf_A}', 'J_{AE_A}', 'J_{NBC_A}','AutoUpdate','off','Location','northeast')
+    xlabel(ax(7),x_label)
+    legend(ax(7),'I_{CFTR_B}', 'J_{buf_A}', 'J_{AE_A}', 'J_{NBC_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,8)
     y = zeros(2,length(x));
@@ -646,10 +645,10 @@ if displ
     y(3,:) = flux.J_NBC_B(c_idx).*F.*1e-9;
     plot(ax(8),x,y,'.','MarkerSize',10)
     title(ax(8),'Basolateral HCO_3^- into cell ')
-    legend(ax(8),'J_{AE_B}','J_{buf_C}','J_{NBC_B}','AutoUpdate','off','Location','east')
-    xlabel(ax(8),'Duct entry                                Duct exit')
+    legend(ax(8),'J_{AE_B}','J_{buf_C}','J_{NBC_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
+    xlabel(ax(8),x_label)
 
-    sgtitle('Apical & Basolateral ion fluxs per cell ( positive flux enters lumen )') 
+    sgtitle('Stimulated Apical & Basolateral Ion Fluxes ( positive flux enters lumen )') 
     %set(gcf,'position',[400,50,850,900])
 
     for k = 1:8

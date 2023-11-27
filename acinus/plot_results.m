@@ -60,6 +60,12 @@ end
 
 axis_points = perp_dist < 0.4;
 skip = 10;
+
+%You simply need to project vector AP onto vector AB, then add the resulting vector to point A.
+%Here is one way to compute it:
+%A + dot(AP,AB) / dot(AB,AB) * AB
+%his formula will work in 2D and in 3D. In fact it works in all dimensions.
+
 X = p(axis_points, 1);
 Y = p(axis_points, 2);
 Z = p(axis_points, 3);
@@ -75,8 +81,8 @@ hold off
 % Plot calcium and IP3 at each point along axis
 ca_solutions = sol(axis_points,:);
 ca_solutions = ca_solutions(order,:);
-ca_solutions = ca_solutions(1:skip:end,:);
-ba_solution = mean(sol(basal_point_idx,:));
+%ca_solutions = ca_solutions(1:skip:end,:);
+%ba_solution = mean(sol(basal_point_idx,:));
 
 figure(2)
 plot(tim, ca_solutions)
