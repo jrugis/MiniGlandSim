@@ -28,16 +28,36 @@ if p.saliva
 end
 
 if p.calcium
-    figure('Position',[20,20,600,400])
+    figure('Position',[20,20,320,800])
+
+    subplot(4,1,1)
+    plot(time_series.time, time_series.w, 'LineWidth', 2);
+    title('Cell Volume')
+    ylabel('xx');
+    
+    subplot(4,1,2)
     hold on
-    p1 = plot(time_series.time, time_series.Ca(15:15:end, :),'r', 'LineWidth', 1);
-    p2 = plot(time_series.time, time_series.Ca(end, :),'b', 'LineWidth', 2);
+    p1 = plot(time_series.time, time_series.Ca(end, :),'b', 'LineWidth', 2);
+    n = floor(0.8 * size(time_series.Ca,1));
+    p2 = plot(time_series.time, time_series.Ca(n, :),'r', 'LineWidth', 2);
     p3 = plot(time_series.time, time_series.Ca(1, :),'g', 'LineWidth', 2);
-    legend([p2 p3],'apical','basal');
+    legend([p1 p2 p3],'apical','internal','basal');
     hold off
-    title('Cellular Ca')
-    xlabel('time s');
+    title('Ca')
     ylabel('uM');
+
+    subplot(4,1,3)
+    plot(time_series.time, time_series.Va, 'LineWidth', 2);
+    title('Va')
+    ylabel('xx');
+
+    subplot(4,1,4)
+    plot(time_series.time, time_series.Vb, 'LineWidth', 2);
+    title('Vb')
+    ylabel('xx');
+    xlabel('time s');
+    
+    sgtitle('Cell concentrations')
 end
 end
 

@@ -4,9 +4,12 @@ SS = SSsol(:,4001:end);
 Nal = SS(1,:);
 Kl = SS(2,:);
 Cll = SS(3,:);
+w = SS(4,:);
 Na = SS(5,:);
 K = SS(6,:);
 H = SS(9,:);
+Va = SS(10,:);
+Vb = SS(11,:);
 HCOl = SS(12,:);
 Hl = SS(13,:);
 
@@ -23,7 +26,9 @@ ca_avg = mean(ca_solutions,2);
 ca_solutions = ca_solutions(order,:);
 Ca = ca_solutions([1:20:end end],:);
 
-time_series = struct('time',tim(1:end-4000),'Q',Qtot,'Na',Nal,'K',Kl,'Cl',Cll,'HCO',HCOl,'H',Hl,'Ca',Ca);
+time_series = struct('time',tim(1:end-4000),...
+    'Q',Qtot,'Na',Nal,'K',Kl,'Cl',Cll,'HCO',HCOl,'H',Hl,...
+    'Ca',Ca,'w',w,'Va',Va,'Vb',Vb);
 save(fname, 'time_series');
 
 end
