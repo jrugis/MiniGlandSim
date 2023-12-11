@@ -581,7 +581,8 @@ if displ
     y(3,:) = -flux.J_NBC_A_c(c_idx).*F.*1e-9;
     y(4,:) = -flux.J_NHE_A_c(c_idx).*F.*1e-9;
     plot(ax(1),x,y,'.','MarkerSize',10)
-    title(ax(1),'Apical Na^+ into lumen ')
+    title(ax(1),'Apical Na into lumen ')
+    xlabel(ax(1),x_label)
     legend(ax(1),'I_{ENaC}', 'I_{P_{Na}}', 'J_{NBC_A}', 'J_{NHE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     
     % subplot(4,2,1)
@@ -591,7 +592,8 @@ if displ
     y(3,:) = flux.J_NBC_B(c_idx).*F.*1e-9;
     y(4,:) = flux.J_NHE_B(c_idx).*F.*1e-9;
     plot(ax(2),x,y,'.','MarkerSize',10)
-    title(ax(2),'Basolateral Na^+ into cell ')
+    title(ax(2),'Basolateral Na into cell ')
+    xlabel(ax(2),x_label)
     legend(ax(2),'J_{NKA_B}','I_{Na_B}','J_{NBC_B}', 'J_{NHE_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     
     % subplot(4,2,3)
@@ -599,7 +601,8 @@ if displ
     y(1,:) = flux.I_BK_c(c_idx).*1e-6;
     y(2,:) = flux.I_P_K_c(c_idx).*1e-6;
     plot(ax(3),x,y,'.','MarkerSize',10)
-    title(ax(3),'Apical K^+ into lumen ')
+    title(ax(3),'Apical K into lumen ')
+    xlabel(ax(3),x_label)
     legend(ax(3),'I_{BK}', 'I_{P_{K}}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,4)
@@ -607,7 +610,8 @@ if displ
     y(1,:) = 2.*flux.J_NKA_B(c_idx).*F*1e-3;
     y(2,:) = -flux.I_K_B(c_idx).*1e-6;
     plot(ax(4),x,y,'.','MarkerSize',10)
-    title(ax(4),'Basolateral K^+ into cell ')
+    title(ax(4),'Basolateral K into cell ')
+    xlabel(ax(4),x_label)
     legend(ax(4),'J_{NKA_B}','I_{K_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,5)
@@ -616,7 +620,8 @@ if displ
     y(2,:) = -flux.I_P_Cl_c(c_idx).*1e-6;
     y(3,:) = -flux.J_AE_A_c(c_idx).*F.*1e-9;
     plot(ax(5),x,y,'.','MarkerSize',10)
-    title(ax(5),'Apical Cl^- into lumen ')
+    title(ax(5),'Apical Cl into lumen ')
+    xlabel(ax(5),x_label)
     legend(ax(5),'I_{CFTR/CaCC}', 'I_{P_{Cl}}', 'J_{AE_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,6)
@@ -624,7 +629,8 @@ if displ
     y(1,:) = flux.J_AE_B(c_idx).*F.*1e-9;
     y(2,:) = flux.I_Cl_B(c_idx).*1e-6;
     plot(ax(6),x,y,'.','MarkerSize',10)
-    title(ax(6),'Basolateral Cl^- into cell ') 
+    title(ax(6),'Basolateral Cl into cell ') 
+    xlabel(ax(6),x_label)
     legend(ax(6),'J_{AE_B}','I_{Cl_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
     % subplot(4,2,7)
@@ -634,7 +640,7 @@ if displ
     y(3,:) = 2.*flux.J_AE_A_c(c_idx).*F.*1e-9;
     y(4,:) = -flux.J_NBC_A_c(c_idx).*F.*1e-9;
     plot(ax(7),x,y,'.','MarkerSize',10)
-    title(ax(7),'Apical HCO_3^- into lumen ')
+    title(ax(7),'Apical HCO into lumen ')
     xlabel(ax(7),x_label)
     legend(ax(7),'I_{CFTR_B}', 'J_{buf_A}', 'J_{AE_A}', 'J_{NBC_A}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
 
@@ -644,7 +650,7 @@ if displ
     y(2,:) = flux.J_buf_C(c_idx).*F.*1e-9;
     y(3,:) = flux.J_NBC_B(c_idx).*F.*1e-9;
     plot(ax(8),x,y,'.','MarkerSize',10)
-    title(ax(8),'Basolateral HCO_3^- into cell ')
+    title(ax(8),'Basolateral HCO into cell ')
     legend(ax(8),'J_{AE_B}','J_{buf_C}','J_{NBC_B}','AutoUpdate','off','Location','southoutside','Orientation','horizontal')
     xlabel(ax(8),x_label)
 

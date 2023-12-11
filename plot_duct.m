@@ -52,6 +52,7 @@ if p.steadystateduct
     ax(1) = subplot(3,2,1);
     plot(CellPos, yyy_c([1,2],I),'.','MarkerSize',10)
     legend('V_A','V_B','Orientation','horizontal','Location','southoutside')
+    xlabel('ID entry     SD entry                                SD exit')
     ylabel('mV')
     title('Membrane Potential')
     ax(2) = subplot(3,2,2);
@@ -61,23 +62,26 @@ if p.steadystateduct
     plot(CellPos(find(CellType(2,:))), w(find(CellType(2,:))),'.','MarkerSize',10)
     hold off
     legend('ID', 'SD','Orientation','horizontal','Location','southoutside')
+    xlabel('ID entry     SD entry                                SD exit')
     ylabel('\mu m^3')
     title('Cell Volume')
     ax(3) = subplot(3,2,3);
     plot(CellPos, yyy_c([4,5,6,7],I),'.','MarkerSize',10)
     legend('Na_C','K_C','Cl_C','HCO_C','Orientation','horizontal','Location','southoutside')
+    xlabel('ID entry     SD entry                                SD exit')
     ylabel('mM')
     title('Cellular Concentration')
     ax(4) = subplot(3,2,4);
     plot(CellPos, -log10(yyy_c(8,I)*1e-3),'.','MarkerSize',10)
+    xlabel('ID entry     SD entry                                SD exit')
     title('Cellular pH')
     hLegend = legend('','Location','southoutside');
     set(hLegend,'visible','off')
     ax(5) = subplot(3,2,5);
     plot(IntPos, yyy_l([1,2,3,4],:),'.','MarkerSize',10)
     legend('Na_A','K_A','Cl_A','HCO_A','Orientation','horizontal','Location','southoutside')
-    ylabel('mM')
     xlabel('ID entry     SD entry                                SD exit')
+    ylabel('mM')
     title('Local Duct Concentration')
     ax(6) = subplot(3,2,6);
     plot(IntPos, -log10(yyy_l(5,:)*1e-3),'.','MarkerSize',10)
@@ -111,6 +115,7 @@ if p.singlecell
     figure('Position',[100,100,760,760])
     ax(1) = subplot(3,2,1);
     plot(t, yy_c(:,1),'LineWidth',2)
+    xlabel('time (s)')
     hold on
     plot(t, yy_c(:,2),'LineWidth',2)
     hold off
@@ -120,6 +125,7 @@ if p.singlecell
     title('Membrane Potentials')
     ax(2) = subplot(3,2,2);
     plot(t, yy_c(:,3),'LineWidth',2)
+    xlabel('time (s)')
     ylabel('\mum^3')
     string1 = strcat('Volume of a cell half way along th SD');
     title(string1)
@@ -127,6 +133,7 @@ if p.singlecell
     set(hLegend,'visible','off')
     ax(3) = subplot(3,2,3);
     plot(t, yy_c(:,4),'LineWidth',2)
+    xlabel('time (s)')
     hold on
     plot(t, yy_c(:,5),'LineWidth',2)
     plot(t, yy_c(:,6),'LineWidth',2)
@@ -137,11 +144,13 @@ if p.singlecell
     title('Cellular Concentrations')
     ax(4) = subplot(3,2,4);
     plot(t, -log10(yy_c(:,8)*1e-3),'-','LineWidth',2)
+    xlabel('time (s)')
     title('Cellular pH')
     hLegend = legend('','Location','southoutside');
     set(hLegend,'visible','off')
     ax(5) = subplot(3,2,5);
     plot(t, yy_l(:,1),'LineWidth',2)
+    xlabel('time (s)')
     hold on
     plot(t, yy_l(:,2),'LineWidth',2)
     plot(t, yy_l(:,3),'LineWidth',2)
@@ -149,7 +158,6 @@ if p.singlecell
     hold off
     legend('Na_A','K_A','Cl_A','HCO_A','Orientation','horizontal','Location','southoutside')
     ylabel('mM')
-    xlabel('time (s)')
     title('Local duct Concentrations')
     ax(6) = subplot(3,2,6);
     plot(t, -log10(yy_l(:,5)*1e-3),'LineWidth',2)

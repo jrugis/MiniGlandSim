@@ -10,7 +10,7 @@ cd('..');
 
 if p.saliva
     figure('Position',[10,10,760,550])
-    add_subplot(time_series.Q, time_series.time, 'um^3/s', 1);
+    add_subplot(time_series.Q, time_series.time, '\mum^3/s', 1);
     title('Fluid Flow');
     add_subplot(time_series.Na, time_series.time, 'mM', 2);
     title('Na');
@@ -33,7 +33,7 @@ if p.calcium
     subplot(4,1,1)
     plot(time_series.time, time_series.w, 'LineWidth', 2);
     title('Cell Volume')
-    ylabel('xx');
+    ylabel('\mum^3');
     
     subplot(4,1,2)
     hold on
@@ -44,17 +44,19 @@ if p.calcium
     legend([p1 p2 p3],'apical','internal','basal');
     hold off
     title('Ca')
-    ylabel('uM');
+    ylabel('\muM');
 
     subplot(4,1,3)
     plot(time_series.time, time_series.Va, 'LineWidth', 2);
+    ylim([-70 -20])
     title('Va')
-    ylabel('xx');
+    ylabel('mV');
 
     subplot(4,1,4)
     plot(time_series.time, time_series.Vb, 'LineWidth', 2);
+    ylim([-70 -20])
     title('Vb')
-    ylabel('xx');
+    ylabel('mV');
     xlabel('time s');
     
     sgtitle('Cell concentrations')

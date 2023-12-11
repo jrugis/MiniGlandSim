@@ -100,6 +100,7 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
     <fileset.depfun>
       <file>${PROJECT_ROOT}/acinus/par.mat</file>
       <file>${PROJECT_ROOT}/convert_data.m</file>
+      <file>${PROJECT_ROOT}/convert_data_acinus.m</file>
       <file>${PROJECT_ROOT}/duct/cell_lumen_prop.mat</file>
       <file>${PROJECT_ROOT}/duct/data_post_processing.m</file>
       <file>${PROJECT_ROOT}/duct/duct_save_binary.m</file>
@@ -107,7 +108,6 @@ ${DYLD_LIBRARY_PATH}:MR/v97/runtime/maci64:MR/v97/sys/os/maci64:MR/v97/bin/maci6
       <file>${PROJECT_ROOT}/duct/f_ODE_noMass.m</file>
       <file>${PROJECT_ROOT}/duct/get_parameters.m</file>
       <file>${PROJECT_ROOT}/duct/ini2struct.m</file>
-      <file>${PROJECT_ROOT}/duct/plot_fluxes.m</file>
       <file>${PROJECT_ROOT}/duct/process_mesh_info.m</file>
       <file>${PROJECT_ROOT}/duct/read_duct_tree_mesh.m</file>
       <file>${PROJECT_ROOT}/duct/read_striated_intercalated_mesh.m</file>
