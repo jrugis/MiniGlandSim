@@ -45,16 +45,20 @@ if p.calcium
     hold off
     title('Ca')
     ylabel('\muM');
+    
+    VaVb = cat(2,time_series.Va,time_series.Vb); % find range of Va Vb 
+    minVaVb = floor(min(VaVb)/10)*10;
+    maxVaVb = ceil(max(VaVb)/10)*10;
 
     subplot(4,1,3)
     plot(time_series.time, time_series.Va, 'LineWidth', 2);
-    ylim([-70 -20])
+    ylim([minVaVb maxVaVb])
     title('Va')
     ylabel('mV');
 
     subplot(4,1,4)
     plot(time_series.time, time_series.Vb, 'LineWidth', 2);
-    ylim([-70 -20])
+    ylim([minVaVb maxVaVb])
     title('Vb')
     ylabel('mV');
     xlabel('time s');
