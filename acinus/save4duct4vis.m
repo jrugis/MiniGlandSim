@@ -1,4 +1,4 @@
-function save4duct(fname, par, tim, SSsol, sol)
+function save4duct4vis(fname, par, tim, SSsol, sol, np, p)
 %SS = horzcat(SSsol(:,2001:end), zeros(size(SSsol,1),2000) + SSsol(:,end));
 SS = SSsol(:,4001:end);
 Nal = SS(1,:);
@@ -20,15 +20,33 @@ Qa =  par.La * ( 2 * ( Nal + Kl - Na - K - H ) - par.CO20 + par.Ul );     % micr
 Qt =  par.Lt * ( 2 * ( Nal + Kl ) + par.Ul - par.Ie);                     % micro-metres^3.s^-1
 Qtot=(Qa+Qt);                                                             % micro-metres^3.s^-1
 
-ca_solutions = sol(1:6233,4001:12001);
+% cell calcium for summary plot
+ca_solutions = sol(1:np,4001:12001);
 ca_avg = mean(ca_solutions,2);
 [ca_avg,order]=sort(ca_avg);
 ca_solutions = ca_solutions(order,:);
 Ca = ca_solutions([1:20:end end],:);
 
+% cell calcium values for visualisation
+iCaV = ([1:20:np np]); % indices for subset of calcium values for visualisation
+CaV = sol(iCaV,4001:12001);
+pV = p(iCaV,:);
+npV = size(pV,1);
+
 time_series = struct('time',tim(1:end-4000),...
     'Q',Qtot,'Na',Nal,'K',Kl,'Cl',Cll,'HCO',HCOl,'H',Hl,...
-    'Ca',Ca,'w',w,'Va',Va,'Vb',Vb);
+    'Ca',Ca,'w',w,'Va',Va,'Vb',Vb,'npV',npV,'pV',pV,'CaV',CaV);
 save(fname, 'time_series');
+
+
+
+
+
+
+
+
+
+
+
 
 end

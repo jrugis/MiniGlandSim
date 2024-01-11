@@ -6,5 +6,6 @@ if ~isfile(acinus_results_file)
     return
 end
 load(acinus_results_file);
+
 acinus_save_binary();
 cd('..');

@@ -140,11 +140,11 @@ for j = cells   % loop over the cells
         %if smallsave==1
         %save(strcat(outputfile,'RAW'),'tim','SSsol','par')
         %else
-        save(strcat('FULL-', outputfile))
+        %save(strcat('FULL-', outputfile))
         %end
-        
-        save4duct(outputfile,par,tim,SSsol);
-    %end % of the loop over the VPLC values
+
+        save4duct4vis(outputfile,par,tim,SSsol,np,p,sol); % save for duct AND 3d visualisation
+    %end % of the loop over the VPLC value
 end % of the loop over the cells
 toc
 
