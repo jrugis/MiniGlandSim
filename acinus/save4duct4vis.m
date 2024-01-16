@@ -20,22 +20,18 @@ Qa =  par.La * ( 2 * ( Nal + Kl - Na - K - H ) - par.CO20 + par.Ul );     % micr
 Qt =  par.Lt * ( 2 * ( Nal + Kl ) + par.Ul - par.Ie);                     % micro-metres^3.s^-1
 Qtot=(Qa+Qt);                                                             % micro-metres^3.s^-1
 
-% cell calcium for summary plot
-ca_solutions = sol(1:np,4001:12001);
-ca_avg = mean(ca_solutions,2);
-[ca_avg,order]=sort(ca_avg);
-ca_solutions = ca_solutions(order,:);
-Ca = ca_solutions([1:20:end end],:);
+% cell calcium for summary plot and visualisation
+ca_solutions = sol(1:np,4001:12001);  % get all the cell calcium values 
+ca_avg = mean(ca_solutions,2);        % average calcium at each time step
+[ca_avg,order]=sort(ca_avg);          % sort the average values
+iCa = order([1:20:np np]);            % indices for subset of sorted calcium values 
+Ca = ca_solutions(iCa,:);             % calcium time series subset
+pV = p(iCa,:);                        % associated node location subset
 
-% cell calcium values for visualisation
-iCaV = ([1:20:np np]); % indices for subset of calcium values for visualisation
-CaV = sol(iCaV,4001:12001);
-pV = p(iCaV,:);
-npV = size(pV,1);
-
+% save acinus data for later plotting, visualisation and subsequent duct simulation
 time_series = struct('time',tim(1:end-4000),...
     'Q',Qtot,'Na',Nal,'K',Kl,'Cl',Cll,'HCO',HCOl,'H',Hl,...
-    'Ca',Ca,'w',w,'Va',Va,'Vb',Vb,'npV',npV,'pV',pV,'CaV',CaV);
+    'Ca',Ca,'w',w,'Va',Va,'Vb',Vb,'pV',pV);
 save(fname, 'time_series');
 
 

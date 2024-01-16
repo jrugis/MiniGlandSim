@@ -53,7 +53,7 @@ for j = cells   % loop over the cells
     smallsave = 0;                          % 1 for saving only the secretion stuff, not all the calcium traces. 0 otherwise
     %outputfile = 'new_saliva_output.mat';
     %outputfile = strcat('outputs/',sim_or_real,'_cell_',num2str(cell_no),'_VPLC',num2str(par.VPLC),'.mat');
-    outputfile = strcat('result_cell',num2str(cell_no),'_',results_label,'.mat');
+    outputfile = strcat('result_cell',num2str(cell_no,'%02.f'),'_',results_label,'.mat');
     %tend = 3;
     %ton = 1;
     %toff = 2; % not used except for a really long run
@@ -140,10 +140,9 @@ for j = cells   % loop over the cells
         %if smallsave==1
         %save(strcat(outputfile,'RAW'),'tim','SSsol','par')
         %else
-        %save(strcat('FULL-', outputfile))
+        save(strcat('FULL-', outputfile))
         %end
-
-        save4duct4vis(outputfile,par,tim,SSsol,np,p,sol); % save for duct AND 3d visualisation
+        save4duct4vis(outputfile,par,tim,SSsol,sol,np,p); % save for duct and visualisation
     %end % of the loop over the VPLC value
 end % of the loop over the cells
 toc

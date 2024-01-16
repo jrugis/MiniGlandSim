@@ -1,11 +1,11 @@
-function convert_data_acinus(acinus_results_file)
+function convert_data_acinus(acinus_results_files)
 cd('acinus');
-if ~isfile(acinus_results_file)
-    disp("File not found: ", acinus_results_file);
-    cd('..');
-    return
+tCa = [];
+tpV = [];
+for f = acinus_results_files
+    load(string(f));
+    tCa = vertcat(tCa, time_series.Ca);
+    tpV = vertcat(tpV, time_series.pV);
 end
-load(acinus_results_file);
-
-acinus_save_binary();
+acinus_save_binary(time_series.time, tCa, tpV);
 cd('..');
