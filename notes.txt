@@ -1,3 +1,68 @@
+To install, firstly rename your existing MiniGland app folder to prevent conflict with the new version as well as to retain any results from sims that you may have already run. Then...
+
+1) Download the data files and visualisation executable (168MB)
+https://www.dropbox.com/scl/fi/oucy1ii6481fpoiynvkqs/MiniGland.zip?rlkey=38c04ayd5jr8hwulo28bbrzfh&dl=0
+MiniGland.zip
+Unzip into your home folder.
+
+2) Download the simulation app and Matlab runtime installer (869MB)
+https://www.dropbox.com/scl/fo/wb8vqgcqtn0p36mufrdpv/h?rlkey=l996pn2084ilt6aeiwx3nlbdz&dl=0
+mini_gland_sim_installer.app
+Launch the mini_gland_sim installer.
+NOTE: It may take a minute or two for the installer to start.
+Complete the installation accepting the default folder locations.
+
+3) Copy the installed simulation app files
+  mini_gland_sim.app
+  run_mini_gland_sim.sh
+from the folder
+  /Applications/mini_gland_sim
+to your home folder
+  MiniGland/MiniGlandSim
+
+4) Delete the (no longer needed) folder 
+  /Applications/mini_gland_sim
+
+5) Adjust your mac security settings (to enable apple scripting):
+SystemSettings | Privacy & Security | Developer Tools | Allow apps... Terminal - ON
+
+6) Launch the MiniGland app:
+cd ~/MiniGland/MiniGlandSim
+./run_mini_gland_sim.sh /Applications/MATLAB/MATLAB_Runtime/R2023b
+
+
+
+
+
+
+
+ORIGINAL
+1) Download MatLab runtime (599MB)
+MATLAB_Runtime_R2023b.zip
+Unzip and move the runtime folder to /Applications.
+
+2) Download the simulation and visualisation executables (153MB)
+MiniGland.zip
+Unzip into your home folder.
+
+3) Enable the simulation app execution property:
+cd ~/MiniGland/MiniGlandSim
+chmod +x mini_gland_sim.app/Contents/MacOS/mini_gland_sim
+
+4) Enable the visualisation app execution property:
+cd ~/MiniGland/MiniGlandVis
+chmod +x mini_gland.app/Contents/MacOS/MiniGland
+
+5) Adjust your mac security settings:
+SystemSettings | Privacy & Security | Developer Tools | Allow apps... Terminal - ON
+
+6) Launch the MiniGland app:
+cd ~/MiniGland/MiniGlandSim
+./run_mini_gland_sim.sh /Applications/MATLAB_Runtime_R2023b/R2023b
+
+
+
+
 SolverResetMethod = 'Fast' | 'Robust'
 
 
