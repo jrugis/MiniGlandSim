@@ -5,18 +5,19 @@ https://www.dropbox.com/scl/fi/oucy1ii6481fpoiynvkqs/MiniGland.zip?rlkey=38c04ay
 MiniGland.zip
 Unzip into your home folder.
 
-2) Download the simulation app and Matlab runtime installer (869MB)
-https://www.dropbox.com/scl/fo/wb8vqgcqtn0p36mufrdpv/h?rlkey=l996pn2084ilt6aeiwx3nlbdz&dl=0
-mini_gland_sim_installer.app
-Launch the mini_gland_sim installer.
+2) Download the simulation app and Matlab runtime installer (866MB)
+https://www.dropbox.com/scl/fi/benj3003xdr4nml5nrabi/mini_gland_sim_installer.zip?rlkey=0cwqu1q4d11uef8helqxp9ply&dl=0
+mini_gland_sim_installer.zip
+Unzip and then launch the mini_gland_sim installer app.
 NOTE: It may take a minute or two for the installer to start.
 Complete the installation accepting the default folder locations.
+
 
 3) Copy the installed simulation app files
   mini_gland_sim.app
   run_mini_gland_sim.sh
 from the folder
-  /Applications/mini_gland_sim
+  /Applications/mini_gland_sim/application
 to your home folder
   MiniGland/MiniGlandSim
 
