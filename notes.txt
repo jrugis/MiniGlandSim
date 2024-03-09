@@ -1,153 +1,22 @@
-To install, firstly rename your existing MiniGland app folder to prevent conflict with the new version as well as to retain any results from sims that you may have already run. Then...
+***************
 
-1) Download the data files and visualisation executable (168MB)
-https://www.dropbox.com/scl/fi/oucy1ii6481fpoiynvkqs/MiniGland.zip?rlkey=38c04ayd5jr8hwulo28bbrzfh&dl=0
-MiniGland.zip
-Unzip into your home folder.
+VPLC0.006
 
-2) Download the simulation app and Matlab runtime installer (866MB)
-https://www.dropbox.com/scl/fi/benj3003xdr4nml5nrabi/mini_gland_sim_installer.zip?rlkey=0cwqu1q4d11uef8helqxp9ply&dl=0
-mini_gland_sim_installer.zip
-Unzip and then launch the mini_gland_sim installer app.
-NOTE: It may take a minute or two for the installer to start.
-Complete the installation accepting the default folder locations.
+cell01, step 203
 
+Error using daeic12
+Need a better guess y0 for consistent initial conditions.
 
-3) Copy the installed simulation app files
-  mini_gland_sim.app
-  run_mini_gland_sim.sh
-from the folder
-  /Applications/mini_gland_sim/application
-to your home folder
-  MiniGland/MiniGlandSim
+Error in ode15s (line 298)
+        [y,yp,f0,dfdy,nFE,nPD,Jfac] = daeic12(ode,odeArgs,t,ICtype,Mt,y,yp0,f0,...
 
-4) Delete the (no longer needed) folder 
-  /Applications/mini_gland_sim
+Error in saliva_model_bicarb (line 112)
+            [~,SS] = ode15s(f_secretion, [0,delt], IC, options);                % step forward the secretion model (for given c, ip and h)
 
-5) Adjust your mac security settings (to enable apple scripting):
-SystemSettings | Privacy & Security | Developer Tools | Allow apps... Terminal - ON
-
-6) Launch the MiniGland app:
-cd ~/MiniGland/MiniGlandSim
-./run_mini_gland_sim.sh /Applications/MATLAB/MATLAB_Runtime/R2023b
+***************
 
 
-
-
-
-
-
-ORIGINAL
-1) Download MatLab runtime (599MB)
-MATLAB_Runtime_R2023b.zip
-Unzip and move the runtime folder to /Applications.
-
-2) Download the simulation and visualisation executables (153MB)
-MiniGland.zip
-Unzip into your home folder.
-
-3) Enable the simulation app execution property:
-cd ~/MiniGland/MiniGlandSim
-chmod +x mini_gland_sim.app/Contents/MacOS/mini_gland_sim
-
-4) Enable the visualisation app execution property:
-cd ~/MiniGland/MiniGlandVis
-chmod +x mini_gland.app/Contents/MacOS/MiniGland
-
-5) Adjust your mac security settings:
-SystemSettings | Privacy & Security | Developer Tools | Allow apps... Terminal - ON
-
-6) Launch the MiniGland app:
-cd ~/MiniGland/MiniGlandSim
-./run_mini_gland_sim.sh /Applications/MATLAB_Runtime_R2023b/R2023b
-
-
-
-
-SolverResetMethod = 'Fast' | 'Robust'
-
-
-User parameters
-===============
-AE_G_A (apical anion exchanger density)
-G_CaCC (apical CaCC conductance)
-G_CFTR (apical CFTR conductance)
-G_ENaC (apical ENaC conductance)
-G_BK (apical Maxi-K conductance)
-NBC_G_A (apical NBC cotransporter density)
-NHE_G_A (apical NHE cotransporter density)
-L_A (apical water permeability)
-
-AE_G_B (basolateral anion exchanger density)
-G_Cl_B (basolateral Cl- conductance)
-G_K_B (basolateral K+ conductance)
-G_Na_B (basolateral Na+ conductance)
-NKA_alpha_B (basolateral NaK ATPase density)
-NBC_G_B (basolateral NBC cotransporter density)
-NHE_G_B (basolateral NHE cotransporter density)
-L_B (basolateral water permeability)
-
-G_P_Cl (tight-junctional Cl- conductance)
-G_P_K (tight-junctional K+ conductance)
-G_P_Na (tight-junctional Na+ conductance)
-
-
-Changes to code 
-===============
-Striated_Duct_Method_of_Lines => MiniGland/duct:
-
-- move ini2struct.m up one directory
-- get_parameters.m
-    comment out line 46 addpath 
-    % get the interactive user adjustments to parameters from GUI
-    % intercalated
-    % striated
-- main_script.m
-    load("../acinus/" + acinus_data_file); % get concentration of Primary Saliva from acinus simulation
-    PS = [time_series.Na(1); time_series.K(1); time_series.Cl(1); time_series.HCO(1); time_series.H(1); 1.28];
-    %{comment out sanity check, electroneutrality check, plots%}
-- dynamic_script.m
-    %load("Acinus PDE Results\result_bicarb_smooth_VPLC0.002.mat")
-    % NOTE: time_series has already been loaded in the main_script
-    %cell_prop{x(i)}.type
-    %{comment out plots%}
-    Rename step -> tstep
-
-Acinus data
-===========
-- primary saliva data = (time, Q, Na, K, Cl, HCO, H)
-**** What are Q and H?
-- initial concentrations = (0, 11.91, 136.95, 6.8, 115.3, 28.47, 7.726e-05)
-- 500s total time
-- stimulation ON at 0s, OFF at 400s
-
-
-Adjustable Parameters
-=====================
-**** What parameters? 
-From in-vivo, ex-vivo?
-
-
-Duct with primary saliva from stimulated acinus
-=============================================== 
-**** acinus data steady state is always first value, then stimulation
-**** simplified duct model with time-varying acinus data??? 
-**** dynamic_script runs after main_script because main script calcs duct steady state
-- could duct steady state saved as precompute to enable faster duct parameter exploration 
-**** acinus data could have single time step (for duct steady calcs only) 
-
-Duct data
-=========
-- 1000s total time
-**** Why?  - runs 2x longer than acinus data
-
-
-
-Duct simulation running times
-=============================
-precompute structure: 60s
-+ steady state inversion (full model): 95s
-+ dynamic data inversion: 631s
-
-Full with GUI: 5m 39s
+- Build app "mini_gland_sim" with installer
+- zip mini_gland_sim to Dropbox
+- zip ~/Desktop/nesi001/ directory MiniGland (excluding the mini_gland_sim.app and run.sh) to Dropbox
 

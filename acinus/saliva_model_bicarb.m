@@ -30,7 +30,14 @@ sim_or_real = 'sim';    % Choose simulated or real cells
 %Vplc_values = [0.001];
 
 load('par.mat');                        % Load the parameters
-par.VPLC = gui_parms.VPLC;
+par.VPLC = gui_parms.VPLC;              % get user settings from gui
+par.aNaK = gui_parms.aNaK;
+par.bNaK = gui_parms.bNaK;
+par.GCl = gui_parms.GCl;
+par.GK = gui_parms.GK;
+par.La = gui_parms.La;
+par.Lb = gui_parms.Lb;
+par.Lt = gui_parms.Lt;
 %display(par.VPLC);
 %par.VPLC = 0.001;
 par.Ul = 10;                            % Change from Shan for the new model
@@ -140,7 +147,7 @@ for j = cells   % loop over the cells
         %if smallsave==1
         %save(strcat(outputfile,'RAW'),'tim','SSsol','par')
         %else
-        %%save(strcat('FULL-', outputfile))
+        save(strcat('FULL-', outputfile))
         %end
         save4duct4vis(outputfile,par,tim,SSsol,sol,np,p); % save for duct and visualisation
     %end % of the loop over the VPLC value

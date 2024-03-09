@@ -2,9 +2,8 @@
 mini_gland_sim/
 acinus/cell_meshes/
 acinus/result*
-acinus/my*.mat
 acinus/FULL*.mat
-duct/my*.mat
-duct/cell_lumen_prop.mat
 duct/MiniGlandMesh*
 duct/result*
+*.pdf
+

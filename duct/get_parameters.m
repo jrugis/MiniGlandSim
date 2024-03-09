@@ -1,4 +1,5 @@
-function [P_i, P_s] = get_parameters(Conc,PSflow, parms_file, gui_parms)
+%function [P_i, P_s] = get_parameters(Conc,PSflow, parms_file, gui_parms)
+function [P_i, P_s] = get_parameters(Conc,PSflow, gui_parms)
 
 % The nested structure of P is as follows:
 %
@@ -44,7 +45,8 @@ function [P_i, P_s] = get_parameters(Conc,PSflow, parms_file, gui_parms)
 
 
 %addpath('/Users/ssu655/Dropbox (Uni of Auckland)/shan/PhD/method_of_lines_mesh/ini2struct')
-INI = ini2struct(parms_file);
+%INI = ini2struct(parms_file);
+INI = ini2struct('parms_ex-vivo.ini');
 param_s = INI.striated;
 param_i = INI.intercalated;
 param_c = INI.duct_common;
