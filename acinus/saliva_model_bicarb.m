@@ -147,7 +147,7 @@ for j = cells   % loop over the cells
         %if smallsave==1
         %save(strcat(outputfile,'RAW'),'tim','SSsol','par')
         %else
-        save(strcat('FULL-', outputfile))
+        %save(strcat('FULL-', outputfile))
         %end
         save4duct4vis(outputfile,par,tim,SSsol,sol,np,p); % save for duct and visualisation
     %end % of the loop over the VPLC value

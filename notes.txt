@@ -20,3 +20,6 @@ Error in saliva_model_bicarb (line 112)
 - zip mini_gland_sim to Dropbox
 - zip ~/Desktop/nesi001/ directory MiniGland (excluding the mini_gland_sim.app and run.sh) to Dropbox
 
+
+
+***************
