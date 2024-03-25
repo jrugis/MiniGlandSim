@@ -29,17 +29,18 @@ sim_or_real = 'sim';    % Choose simulated or real cells
 %Vplc_values = [0.001 0.002 0.003];
 %Vplc_values = [0.001];
 
-load('par.mat');                        % Load the parameters
-par.VPLC = gui_parms.VPLC;              % get user settings from gui
-par.aNaK = gui_parms.aNaK;
+load('par.mat');              % Load the parameters
+par.aNaK = gui_parms.aNaK;    % get user settings from gui
 par.bNaK = gui_parms.bNaK;
 par.GCl = gui_parms.GCl;
 par.GK = gui_parms.GK;
 par.La = gui_parms.La;
 par.Lb = gui_parms.Lb;
 par.Lt = gui_parms.Lt;
+%par.VPLC = gui_parms.VPLC;
 %display(par.VPLC);
 %par.VPLC = 0.001;
+stim_Vplc = gui_parms.VPLC; % VPLC value during stimulation 
 par.Ul = 10;                            % Change from Shan for the new model
 
 %for j=4:4   % loop over the cells
@@ -53,7 +54,6 @@ for j = cells   % loop over the cells
     %-----------------------------------
     % Make sure all these are set correctly
     %par.VPLC = Vplc_values(k);
-    stim_Vplc = par.VPLC; % VPLC value during stimulation 
     par.VPLC = 0;         % VPLC initially OFF for steady state calculation
     par.spatialchoose = 1;                  % 1 for spatially distributed IPR.
     par.apicalKCadensity = 1;               % 1 for equal density of KCa on apical and basal. Can run from 0 to bigger than 1.
@@ -83,7 +83,7 @@ for j = cells   % loop over the cells
         %   Third np components of u    -   h
 
         % options and mass matrix for ode15s (the fluid secretion solve)
-        M = eye(14);
+        M = eye(13); % M = eye(14);
         M(10,10)=0; M(11,11)=0;   % 2 DAEs for Va and Vb
         options = odeset('Mass',M,'RelTol', 1e-11, 'AbsTol', 1e-11);                    
 
@@ -294,9 +294,26 @@ HCO_0     = 10.16;                                  % bicarbonate in the cell
 H_0       = 0.0001461;                              % H ions in the cell (determines the pH)
 Va_0      = -50.71;                                 % apical membrane potential
 Vb_0      = -51.35;                                 % basal membrane potential
-Q_0       = 11.91;                                  % primary saliva flow rate
+%Q_0       = 11.91;                                  % primary saliva flow rate
 
-IC = [Nal_0,Kl_0,Cll_0,w_0,Na_0,K_0,Cl_0,HCO_0,H_0,Va_0,Vb_0,HCOl_0,Hl_0,Q_0];   % The initial condition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% JWR new initial values - mean of 13 sim cells (omit 'bad' cell 14) after 200s (steady state)
+Nal0      = 139.0534e+000;
+Kl_0      = 6.2785e+000;
+HCOl_0    = 28.1491e+000;
+Hl_0      = 78.1688e-006;
+Cll_0     = Nal_0+Kl_0-HCOl_0;
+Na_0      = 23.7079e+000;
+K_0       = 121.4078e+000;
+Cl_0      = 53.7864e+000;
+HCO_0     = 9.3971e+000;
+H_0       = 113.3193e-006;
+Va_0      = -63.5550e+000;
+Vb_0      = -65.2020e+000;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+IC = [Nal_0,Kl_0,Cll_0,w_0,Na_0,K_0,Cl_0,HCO_0,H_0,Va_0,Vb_0,HCOl_0,Hl_0];   % The initial condition
+%IC = [Nal_0,Kl_0,Cll_0,w_0,Na_0,K_0,Cl_0,HCO_0,H_0,Va_0,Vb_0,HCOl_0,Hl_0,Q_0];   % The initial condition
              
 end
 

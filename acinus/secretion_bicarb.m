@@ -13,7 +13,7 @@ Va = x(10);
 Vb = x(11);
 HCOl = x(12);
 Hl = x(13);
-Q = x(14);
+%Q = x(14);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,7 +119,7 @@ dx(10) = -JCl - JHCO - JNaKa - JKa - JtK - JtNa;
 dx(11) = -JKb - JNaKb       + JtK + JtNa;
 dx(12) = ( JBBA - JHCO - Qtot * HCOl ) / par.wl; 
 dx(13) = ( JBBA - Qtot * Hl) / par.wl;
-dx(14) = Qtot;
+%dx(14) = Qtot;
 
 dx = dx';
 
