@@ -1,25 +1,78 @@
-***************
 
-VPLC0.006
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Deploying complete sim and vis collection (in 2x zip files) for download by end-users
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-cell01, step 203
+***** zip 1 **************************************************
+-- simulation app and matlab runtime installer
 
-Error using daeic12
-Need a better guess y0 for consistent initial conditions.
+matlab - designer | share | standalone desktop app | "mini_gland_sim"
+compress "mini_gland_sim_installer.app"
+dropbox(web) upload "mini_gland_sim_installer.zip" to folder "public/mini_gland_sim_installer"
+https://www.dropbox.com/scl/fo/wy6ostjdprn1ogx7xxmub/h?rlkey=30z8i3ng9cy5mxzsulxsrboty&dl=0
 
-Error in ode15s (line 298)
-        [y,yp,f0,dfdy,nFE,nPD,Jfac] = daeic12(ode,odeArgs,t,ICtype,Mt,y,yp0,f0,...
+***** zip 2 ***************************************************
+-- vis app and data files
 
-Error in saliva_model_bicarb (line 112)
-            [~,SS] = ode15s(f_secretion, [0,delt], IC, options);                % step forward the secretion model (for given c, ip and h)
+update the files in temp folder MiniGland
+compress MiniGland containing directories & files:
+##################
+MiniGlandSim
+MiniGlandVis
 
-***************
+MiniGland/MiniGlandSim:
+MiniGland_User_Manual.pdf
+acinus
+duct
 
+MiniGland/MiniGlandSim/acinus:
+cell_meshes
+par.mat
+parms_default.mat
+result_cell01_vplc0.001.mat
+result_cell02_vplc0.001.mat
+result_cell03_vplc0.001.mat
+result_cell04_vplc0.001.mat
+result_cell05_vplc0.001.mat
+result_cell06_vplc0.001.mat
+result_cell07_vplc0.001.mat
+result_cell08_vplc0.001.mat
+result_cell09_vplc0.001.mat
+result_cell10_vplc0.001.mat
+result_cell11_vplc0.001.mat
+result_cell12_vplc0.001.mat
+result_cell13_vplc0.001.mat
+result_cell14_vplc0.001.mat
 
-- Build app "mini_gland_sim" with installer
-- zip mini_gland_sim to Dropbox
-- zip ~/Desktop/nesi001/ directory MiniGland (excluding the mini_gland_sim.app and run.sh) to Dropbox
+MiniGland/MiniGlandSim/acinus/cell_meshes:
+sim_cell_10_mesh.mat
+sim_cell_11_mesh.mat
+sim_cell_12_mesh.mat
+sim_cell_13_mesh.mat
+sim_cell_14_mesh.mat
+sim_cell_1_mesh.mat
+sim_cell_2_mesh.mat
+sim_cell_3_mesh.mat
+sim_cell_4_mesh.mat
+sim_cell_5_mesh.mat
+sim_cell_6_mesh.mat
+sim_cell_7_mesh.mat
+sim_cell_8_mesh.mat
+sim_cell_9_mesh.mat
 
+MiniGland/MiniGlandSim/duct:
+cell_lumen_prop.mat
+parms_default.mat
+parms_ex-vivo.ini
+result_cell04_VPLC0.001.mat
 
+MiniGland/MiniGlandVis:
+_4Unity_acinus.bin
+_4Unity_duct.bin
+mini_gland.app
+mini_gland.scpt
+##################
 
-***************
+dropbox(web) upload "MiniGland.zip" to folder "public/MiniGland"
+https://www.dropbox.com/scl/fo/tlh4104u1ewbb3bo4vj7g/h?rlkey=a1qxyy58z9mo92m8tl2bmth7q&dl=0
+
